@@ -1,4 +1,5 @@
-
+export type sortField = null | 'createdAt' | 'updatedAt' | 'brand' | 'model' | 'year' | 'pricePerDay' | 'mileage' | 'seats';
+export type sortOrder = null | 'asc' | 'desc';
 export type transmission = 'automatic' | 'manual';
 export type fuelType = 'petrol' | 'diesel' | 'hybrid' | 'electric';
 export type category = 'economy' | 'compact' | 'sedan' | 'suv' | 'luxury';
@@ -21,6 +22,26 @@ export interface Car {
     status: status;
     createdAt: string;
     updatedAt: string;
+};
+
+export interface GetCarsParams {
+    page: number;
+    perPage: number;
+    sortField: sortField;
+    sortOrder: sortOrder;
+    locationId: string;
+    brand: string;
+    model: string;
+    year: number;
+    color: string;
+    transmission: transmission;
+    fuelType: fuelType;
+    category: category;
+    status: status;
+    minPrice: number;
+    maxPrice: number;
+    startDate: string;
+    endDate: string;
 };
 
 export interface GetCarsResponse {

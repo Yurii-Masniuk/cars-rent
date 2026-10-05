@@ -13,6 +13,14 @@ export interface Booking {
     updatedAt: string;
 };
 
+export interface GetBookingsParams {
+    page: number;
+    perPage: number;
+    status: BookingStatus;
+    carId: string;
+    userId: string;
+};
+
 export interface GetBookingResponse {
     bookings: Booking[];
 };

@@ -11,6 +11,14 @@ export interface Location {
     updatedAt: string;
 };
 
+export interface GetLocationsParams {
+    page: number;
+    perPage: number;
+    name: string;
+    city: string;
+    isActive: boolean;
+};
+
 export interface GetLocationsResponse {
     page: number;
     perPage: number;
