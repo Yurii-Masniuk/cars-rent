@@ -18,11 +18,7 @@ export interface RegisterBody {
 };
 
 export interface RegisterResponse {
-    status: number;
     message: string;
-    data: {
-        message: string;
-    };
 };
 
 export interface LoginBody {
@@ -43,9 +39,5 @@ export interface LogoutResponse {
 };
 
 export interface CurrentBodyResponse {
-    status: number;
-    message: string;
-    data: {
-        message: string;
-    };
+    user: User;
 };
