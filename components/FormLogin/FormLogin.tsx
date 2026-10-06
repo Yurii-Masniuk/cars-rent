@@ -4,6 +4,7 @@ import { getMe, login } from '@/services/auth';
 import css from './FormLogin.module.css';
 import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'next/navigation';
+import { AxiosError } from 'axios';
 
 const FormLogin = () => {
     const setUser = useAuthStore((s) => s.setUser);
@@ -15,10 +16,15 @@ const FormLogin = () => {
             password: formData.get('password') as string,
         };
 
-        await login(body);
-        const res = await getMe();
-        setUser(res);
-        router.push('/');
+        try {
+            await login(body);
+            const res = await getMe();
+            setUser(res);
+            router.push('/');
+        } catch (error) {
+            const err = error as AxiosError<{ message: string }>;
+            console.log(err);
+        };
     };
 
     return (

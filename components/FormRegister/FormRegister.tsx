@@ -3,6 +3,7 @@
 import { register } from '@/services/auth';
 import css from './FormRegister.module.css';
 import { useRouter } from 'next/navigation';
+import { AxiosError } from 'axios';
 
 const FormRegister = () => {
     const router = useRouter();
@@ -14,8 +15,13 @@ const FormRegister = () => {
             password: formData.get('password') as string,
         };
 
-        await register(body);
-        router.push('/login');
+        try {
+            await register(body);
+            router.push('/auth/login');
+        } catch (error) {
+            const err = error as AxiosError<{ message: string }>;
+            console.log(err);
+        };
     };
 
     return (
