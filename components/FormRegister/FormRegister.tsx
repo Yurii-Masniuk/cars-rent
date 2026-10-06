@@ -1,7 +1,7 @@
 'use client';
 
 import { register } from '@/services/auth';
-import css from './RegisterForm.module.css';
+import css from './FormRegister.module.css';
 import { useRouter } from 'next/navigation';
 
 const FormRegister = () => {
