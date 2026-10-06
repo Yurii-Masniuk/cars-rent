@@ -1,8 +1,8 @@
-import { CreateLocationBody, GetLocationsResponse, Location, UpdateLocationBody } from "@/types/locations";
+import { CreateLocationBody, GetLocationsParams, GetLocationsResponse, Location, UpdateLocationBody } from "@/types/locations";
 import { proxyServer } from "./server-config";
 
-export const getLocations = async () => {
-    const res = await proxyServer.get<GetLocationsResponse>('/locations');
+export const getLocations = async (params: GetLocationsParams) => {
+    const res = await proxyServer.get<GetLocationsResponse>('/locations', {params});
     return res.data;
  };
 

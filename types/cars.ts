@@ -1,9 +1,9 @@
-export type sortField = null | 'createdAt' | 'updatedAt' | 'brand' | 'model' | 'year' | 'pricePerDay' | 'mileage' | 'seats';
-export type sortOrder = null | 'asc' | 'desc';
-export type transmission = 'automatic' | 'manual';
-export type fuelType = 'petrol' | 'diesel' | 'hybrid' | 'electric';
-export type category = 'economy' | 'compact' | 'sedan' | 'suv' | 'luxury';
-export type status = 'active' | 'maintenance' | 'inactive';
+export type SortField = null | 'createdAt' | 'updatedAt' | 'brand' | 'model' | 'year' | 'pricePerDay' | 'mileage' | 'seats';
+export type SortOrder = null | 'asc' | 'desc';
+export type Transmission = 'automatic' | 'manual';
+export type FuelType = 'petrol' | 'diesel' | 'hybrid' | 'electric';
+export type Category = 'economy' | 'compact' | 'sedan' | 'suv' | 'luxury';
+export type Status = 'active' | 'maintenance' | 'inactive';
 
 export interface Car {
     _id: string;
@@ -12,36 +12,36 @@ export interface Car {
     model: string;
     year: number;
     color: string;
-    transmission: transmission;
-    fuelType: fuelType;
-    category: category;
+    transmission: Transmission;
+    fuelType: FuelType;
+    category: Category;
     seats: number;
     pricePerDay: number;
     mileage: number;
     images: string[];
-    status: status;
+    status: Status;
     createdAt: string;
     updatedAt: string;
 };
 
 export interface GetCarsParams {
-    page: number;
-    perPage: number;
-    sortField: sortField;
-    sortOrder: sortOrder;
-    locationId: string;
-    brand: string;
-    model: string;
-    year: number;
-    color: string;
-    transmission: transmission;
-    fuelType: fuelType;
-    category: category;
-    status: status;
-    minPrice: number;
-    maxPrice: number;
-    startDate: string;
-    endDate: string;
+    page?: number;
+    perPage?: number;
+    sortField?: SortField;
+    sortOrder?: SortOrder;
+    locationId?: string;
+    brand?: string;
+    model?: string;
+    year?: number;
+    color?: string;
+    transmission?: Transmission;
+    fuelType?: FuelType;
+    category?: Category;
+    status?: Status;
+    minPrice?: number;
+    maxPrice?: number;
+    startDate?: string;
+    endDate?: string;
 };
 
 export interface GetCarsResponse {
@@ -60,14 +60,14 @@ export interface CreateCarBody {
     model: string;
     year: number;
     color: string;
-    transmission: transmission;
-    fuelType: fuelType;
-    category: category;
+    transmission: Transmission;
+    fuelType: FuelType;
+    category: Category;
     seats: number;
     pricePerDay: number;
     mileage?: number;
     images?: string[];
-    status?: status;
+    status?: Status;
 };
 
 export interface UpdateCarBody {
@@ -76,12 +76,12 @@ export interface UpdateCarBody {
     model?: string;
     year?: number;
     color?: string;
-    transmission?: transmission;
-    fuelType?: fuelType;
-    category?: category;
+    transmission?: Transmission;
+    fuelType?: FuelType;
+    category?: Category;
     seats?: number;
     pricePerDay?: number;
     mileage?: number;
     images?: string[];
-    status?: status;
+    status?: Status;
 };

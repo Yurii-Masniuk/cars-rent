@@ -1,11 +1,11 @@
-export type role = 'user' | 'admin';
+export type Role = 'user' | 'admin';
 
 export interface User {
     _id: string;
     name: string;
     email: string;
     phone: string;
-    role: role;
+    role: Role;
     isBlocked: boolean;
     createdAt: string;
     updatedAt: string;

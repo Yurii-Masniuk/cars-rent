@@ -19,28 +19,28 @@ export interface GetDashboardRevenue {
     revenueByDay: RevenueDay[];
 };
 
-export type transmission = 'automatic' | 'manual';
-export type fuelType = 'petrol' | 'diesel' | 'hybrid' | 'electric';
-export type category = 'economy' | 'compact' | 'sedan' | 'suv' | 'luxury';
-export type status = 'active' | 'maintenance' | 'inactive';
+export type Transmission = 'automatic' | 'manual';
+export type FuelType = 'petrol' | 'diesel' | 'hybrid' | 'electric';
+export type Category = 'economy' | 'compact' | 'sedan' | 'suv' | 'luxury';
+export type Status = 'active' | 'maintenance' | 'inactive';
 
 export interface FleetStatusStat {
-    status: status;
+    status: Status;
     count: number;
 };
 
 export interface FleetCategoryStat {
-    category: category;
+    category: Category;
     count: number;
 };
 
 export interface FleetFuelStat {
-    fuelType: fuelType;
+    fuelType: FuelType;
     count: number;
 };
 
 export interface FleetTransmissionStat {
-    transmission: transmission;
+    transmission: Transmission;
     count: number;
 };
 

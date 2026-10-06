@@ -12,11 +12,11 @@ export interface Location {
 };
 
 export interface GetLocationsParams {
-    page: number;
-    perPage: number;
-    name: string;
-    city: string;
-    isActive: boolean;
+    page?: number;
+    perPage?: number;
+    name?: string;
+    city?: string;
+    isActive?: boolean;
 };
 
 export interface GetLocationsResponse {

@@ -14,11 +14,11 @@ export interface Booking {
 };
 
 export interface GetBookingsParams {
-    page: number;
-    perPage: number;
-    status: BookingStatus;
-    carId: string;
-    userId: string;
+    page?: number;
+    perPage?: number;
+    status?: BookingStatus;
+    carId?: string;
+    userId?: string;
 };
 
 export interface GetBookingResponse {
