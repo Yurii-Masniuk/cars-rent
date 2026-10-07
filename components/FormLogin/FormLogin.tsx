@@ -5,12 +5,16 @@ import css from './FormLogin.module.css';
 import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'next/navigation';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
 
 const FormLogin = () => {
     const setUser = useAuthStore((s) => s.setUser);
     const router = useRouter();
+    const [errMessage, setErrMessage] = useState<string | null>(null);
 
     const handleSubmit = async (formData: FormData) => {
+        setErrMessage(null);
+
         const body = {
             email: formData.get('email') as string,
             password: formData.get('password') as string,
@@ -23,7 +27,8 @@ const FormLogin = () => {
             router.push('/');
         } catch (error) {
             const err = error as AxiosError<{ message: string }>;
-            console.log(err);
+            const message = err.response?.data?.message || err.message || 'ERROR';
+            setErrMessage(message);
         };
     };
 
@@ -32,7 +37,8 @@ const FormLogin = () => {
             <form action={handleSubmit}>
                 <input name='email' type="email" placeholder='Enter your email' />
                 <input name='password' type="password" placeholder='Enter your password' />
-                <button>Sign in</button>
+                {errMessage && <p>{errMessage}</p>}
+                <button type='submit'>Sign in</button>
             </form>
         </div>
     );

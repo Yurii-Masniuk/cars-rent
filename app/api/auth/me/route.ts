@@ -1,4 +1,5 @@
 import { globalServer } from "@/services/server-config";
+import { User } from "@/types/auth";
 import { AxiosError } from "axios";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
@@ -6,7 +7,7 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
   try {
     const cookieStorage = await cookies();
-    const res = await globalServer.get("/auth/me", {
+    const res = await globalServer.get<User>("/auth/me", {
       headers: {
         Cookie: cookieStorage.toString(),
       },

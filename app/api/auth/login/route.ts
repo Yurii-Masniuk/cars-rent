@@ -1,4 +1,5 @@
 import { globalServer } from "@/services/server-config";
+import { LoginResponse } from "@/types/auth";
 import { AxiosError } from "axios";
 import { parseCookie } from "cookie";
 
@@ -8,7 +9,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
-    const res = await globalServer.post("/auth/login", body);
+    const res = await globalServer.post<LoginResponse>("/auth/login", body);
 
     //!================= ЗБЕРЕЖЕННЯ COOKIE з серверу на frontend ========================
     const cookieStorage = await cookies();

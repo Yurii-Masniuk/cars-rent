@@ -4,11 +4,15 @@ import { register } from '@/services/auth';
 import css from './FormRegister.module.css';
 import { useRouter } from 'next/navigation';
 import { AxiosError } from 'axios';
+import { useState } from 'react';
 
 const FormRegister = () => {
     const router = useRouter();
+    const [errMessage, setErrMessage] = useState<string | null>(null);
 
     const handleSubmit = async (formData: FormData) => {
+        setErrMessage(null);
+
         const body = {
             name: formData.get('name') as string,
             email: formData.get('email') as string,
@@ -17,10 +21,11 @@ const FormRegister = () => {
 
         try {
             await register(body);
-            router.push('/auth/login');
+            router.push('/login');
         } catch (error) {
             const err = error as AxiosError<{ message: string }>;
-            console.log(err);
+            const message = err.response?.data?.message || err.message || 'ERROR';
+            setErrMessage(message);
         };
     };
 
@@ -30,7 +35,8 @@ const FormRegister = () => {
                 <input name='name' type="text" placeholder='Enter your name' required />
                 <input name='email' type="email" placeholder='Enter your email' required />
                 <input name='password' type="password" placeholder='Enter your password' required />
-                <button>Register</button>
+                {errMessage && <p>{errMessage}</p>}
+                <button type='submit'>Register</button>
             </form>
         </div>
     );

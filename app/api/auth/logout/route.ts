@@ -2,12 +2,13 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { AxiosError } from "axios";
 import { globalServer } from "@/services/server-config";
+import { LogoutResponse } from "@/types/auth";
 
 export const POST = async () => {
   try {
     const cookieStorage = await cookies();
 
-    const res = await globalServer.post("/auth/logout", null, {
+    const res = await globalServer.post<LogoutResponse>("/auth/logout", null, {
       headers: {
         Cookie: cookieStorage.toString(),
       },

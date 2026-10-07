@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { parseCookie } from "cookie";
 import { AxiosError } from "axios";
 import { globalServer } from "@/services/server-config";
+import { RefreshResponse } from "@/types/auth";
 
 export const POST = async () => {
   try {
@@ -16,7 +17,7 @@ export const POST = async () => {
     };
 
     //!=================== ПЕРЕДАЄМО З ФРОНТЕНДУ COOKIE НА СЕРВЕР ======================
-    const res = await globalServer.post("/auth/refresh", null, {
+    const res = await globalServer.post<RefreshResponse>("/auth/refresh", null, {
       headers: {
         Cookie: cookieStorage.toString(),
       },
