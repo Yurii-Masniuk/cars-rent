@@ -31,7 +31,7 @@ export interface LoginResponse {
 };
 
 export interface RefreshResponse {
-    accessToken: string;
+    success: boolean;
 };
 
 export interface LogoutResponse {
