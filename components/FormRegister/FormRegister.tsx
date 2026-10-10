@@ -4,19 +4,37 @@ import { register } from '@/services/auth';
 import css from './FormRegister.module.css';
 import { useRouter } from 'next/navigation';
 import { AxiosError } from 'axios';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const FormRegister = () => {
     const router = useRouter();
-    const [errMessage, setErrMessage] = useState<string | null>(null);
 
-    const handleSubmit = async (formData: FormData) => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
+    
+    const [errMessage, setErrMessage] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            setFormData(prev => ({
+                ...prev,
+                [e.target.name]: e.target.value,
+            }));
+        };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setErrMessage(null);
+        setIsLoading(true);
+        const { name, email, password } = formData;
 
         const body = {
-            name: formData.get('name') as string,
-            email: formData.get('email') as string,
-            password: formData.get('password') as string,
+            name,
+            email,
+            password,
         };
 
         try {
@@ -26,17 +44,51 @@ const FormRegister = () => {
             const err = error as AxiosError<{ message: string }>;
             const message = err.response?.data?.message || err.message || 'ERROR';
             setErrMessage(message);
+        } finally {
+            setIsLoading(false);
         };
     };
 
     return (
         <div className={css['formRegister']}>
-            <form action={handleSubmit}>
-                <input name='name' type="text" placeholder='Enter your name' required />
-                <input name='email' type="email" placeholder='Enter your email' required />
-                <input name='password' type="password" placeholder='Enter your password' required />
-                {errMessage && <p>{errMessage}</p>}
-                <button type='submit'>Register</button>
+            <form onSubmit={handleSubmit}>
+                <h3>Реєстрація</h3>
+                <div>
+                    <label>Ім&#39;я</label>
+                    <input
+                        name='name'
+                        type="text"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Введіть своє ім'я"
+                        required />
+                </div>
+                <div>
+                    <label>Електронна пошта</label>
+                    <input
+                        name='email'
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Введіть адресу електронної пошти"
+                        required />
+
+                </div>
+                <div>
+                    <label >Пароль</label>
+                    <input
+                        name='password'
+                        type="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Введіть пароль"
+                        required />
+                </div>
+                
+                {errMessage && <p className={css.error}>{errMessage}</p>}
+                <button type='submit' disabled={isLoading}>
+                    {isLoading ? 'Завантаження' : 'Реєстрація'}
+                </button>
             </form>
         </div>
     );

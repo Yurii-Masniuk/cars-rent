@@ -10,14 +10,32 @@ import { useState } from 'react';
 const FormLogin = () => {
     const setUser = useAuthStore((s) => s.setUser);
     const router = useRouter();
-    const [errMessage, setErrMessage] = useState<string | null>(null);
 
-    const handleSubmit = async (formData: FormData) => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
+
+    const [errMessage, setErrMessage] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setErrMessage(null);
+        setIsLoading(true);
+
+        const { email, password } = formData;
 
         const body = {
-            email: formData.get('email') as string,
-            password: formData.get('password') as string,
+            email,
+            password,
         };
 
         try {
@@ -29,16 +47,41 @@ const FormLogin = () => {
             const err = error as AxiosError<{ message: string }>;
             const message = err.response?.data?.message || err.message || 'ERROR';
             setErrMessage(message);
+        } finally {
+            setIsLoading(false);
         };
     };
 
     return (
         <div className={css['formLogin']}>
-            <form action={handleSubmit}>
-                <input name='email' type="email" placeholder='Enter your email' />
-                <input name='password' type="password" placeholder='Enter your password' />
-                {errMessage && <p>{errMessage}</p>}
-                <button type='submit'>Sign in</button>
+            <form onSubmit={handleSubmit}>
+                <h3>Вхід до системи</h3>
+                <div>
+                    <label>Електронна пошта</label>
+                    <input
+                        name='email'
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Введіть адресу електронної пошти"
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Пароль</label>
+                    <input
+                        name='password'
+                        type="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        placeholder="Введіть пароль"
+                        required
+                    />
+                </div>
+                {errMessage && <p className={css.error}>{errMessage}</p>}
+                <button type='submit' disabled={isLoading}>
+                    {isLoading ? 'Завантаження...' : 'Увійти'}
+                </button>
             </form>
         </div>
     );
