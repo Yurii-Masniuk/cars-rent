@@ -42,8 +42,12 @@ const FormRegister = () => {
             router.push('/login');
         } catch (error) {
             const err = error as AxiosError<{ message: string }>;
-            const message = err.response?.data?.message || err.message || 'ERROR';
-            setErrMessage(message);
+            if (err.response?.status === 409) {
+                setErrMessage("Такий email вже зареєстрований");
+            } else {
+                const message = err.response?.data?.message || err.message || 'ERROR';
+                setErrMessage(message);
+            };
         } finally {
             setIsLoading(false);
         };
