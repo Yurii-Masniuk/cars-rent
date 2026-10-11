@@ -42,11 +42,28 @@ const FormRegister = () => {
             router.push('/login');
         } catch (error) {
             const err = error as AxiosError<{ message: string }>;
-            if (err.response?.status === 409) {
-                setErrMessage("Такий email вже зареєстрований");
-            } else {
-                const message = err.response?.data?.message || err.message || 'ERROR';
-                setErrMessage(message);
+            const status = err.response?.status;
+
+            switch (status) {
+                case 400:
+                    setErrMessage("Перевірте коректність заповнених полів.");
+                    break;
+                case 401:
+                    setErrMessage("Невірний email або пароль.");
+                    break;
+                case 404:
+                    setErrMessage("Користувача не знайдено.");
+                    break;
+                case 409:
+                    setErrMessage("Такий email вже зареєстрований.");
+                    break;
+                default:
+                    if (status && status >= 500) {
+                        setErrMessage("Помилка на сервері. Спробуйте пізніше.");
+                    } else {
+                        setErrMessage(err.response?.data?.message || err.message || "Щось пішло не так...");
+                    }
+                    break;
             };
         } finally {
             setIsLoading(false);

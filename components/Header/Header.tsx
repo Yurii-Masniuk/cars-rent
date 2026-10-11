@@ -47,7 +47,7 @@ const Header = () => {
                         </div>
                     ) : (
                         <div className={css.authLinks}>
-                            <Link href="/login" className={css.link}>Логін</Link>
+                            <Link href="/login" className={css.link}>Увійти</Link>
                             <Link href="/register" className={css.link}>Реєстрація</Link>
                         </div>
                     )}
