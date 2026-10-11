@@ -1,0 +1,16 @@
+.carsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+}
+
+.noCars {
+    text-align: center;
+    font-size: 1.125rem;
+    color: #64748b;
+    margin-top: 2rem;
+}

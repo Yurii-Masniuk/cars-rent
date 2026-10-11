@@ -1,0 +1,49 @@
+import { Car } from '@/types/cars';
+import css from './CarItem.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
+
+interface CarItemProps{
+    element: Car;
+};
+
+const CarItem = ({ element }: CarItemProps) => {
+    const carImage = element.images?.[0];
+    
+    return (
+            
+        <li className={css.carItem}>
+            <div className={css.imageWrapper}>
+                <Image
+                    src={carImage}
+                    alt={`${element.brand} ${element.model}`}
+                    width={300}
+                    height={200}
+                    className={css.image}
+                />
+            </div>
+
+            <div className={css.content}>
+                <h3>{element.brand} {element.model}</h3>
+                <p className={css.price}><b>{element.pricePerDay} $</b> / день</p>
+
+                <ul className={css.specs}>
+                    <li>Рік: {element.year}</li>
+                    <li>Категорія: {element.category}</li>
+                    <li>Коробка передач: {element.transmission}</li>
+                    <li>Тип пального: {element.fuelType}</li>
+                    <li>Кількість місць: {element.seats}</li>
+                    <li>Колір: {element.color}</li>
+                    <li>Пробіг: {element.mileage}</li>
+                </ul>
+
+                <Link href={`/cars/${element._id}`} className={css.detailsBtn}>
+                    Детальніше / Забронювати
+                </Link>
+
+            </div>
+        </li>
+    );
+};
+
+export default CarItem;
