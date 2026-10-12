@@ -13,14 +13,17 @@ const CarItem = ({ element }: CarItemProps) => {
     return (
             
         <li className={css.carItem}>
+
             <div className={css.imageWrapper}>
-                <Image
-                    src={carImage}
-                    alt={`${element.brand} ${element.model}`}
-                    width={300}
-                    height={200}
-                    className={css.image}
-                />
+                {carImage ? (
+                    <img 
+                        src={carImage} 
+                        alt={`${element.brand} ${element.model}`} 
+                        className={css.image} 
+                    />
+                ) : (
+                    <span className={css.noImage}>Немає фото</span>
+                )}
             </div>
 
             <div className={css.content}>

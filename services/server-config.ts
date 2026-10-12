@@ -6,5 +6,5 @@ export const proxyServer = axios.create({
 });
 
 export const globalServer = axios.create(
-    {baseURL: "https://q10gsl5s9d.execute-api.us-east-1.amazonaws.com",}
+    {baseURL: "https://13v8rjkfud.execute-api.eu-central-1.amazonaws.com",}
 );
