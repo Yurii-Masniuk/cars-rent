@@ -21,7 +21,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             }
         };
         fetchData();
-    }, [isAuth, setUser, clearUser]);
+    }, []);
 
     return children;
 };

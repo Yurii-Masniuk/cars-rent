@@ -3,10 +3,14 @@ import { cookies } from "next/headers";
 import { globalServer } from "@/services/server-config";
 import { AxiosError } from "axios";
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
+    const params = Object.fromEntries(req.nextUrl.searchParams.entries());
+    console.log(params);
+    
     try {
         const cookieStore = await cookies();
         const res = await globalServer.get('/cars', {
+            params,
             headers: {
                 Cookie: cookieStore.toString(),
             },

@@ -22,6 +22,6 @@ export const logout = async () => {
 };
 
 export const getMe = async () => {
-    const res = await proxyServer.get<User>('/auth/me');
-    return res.data;
+    const res = await proxyServer.get<{user: User}>('/auth/me');
+    return res.data.user;
 };

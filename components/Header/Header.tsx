@@ -40,7 +40,7 @@ const Header = () => {
                 <div className={css.authSection}>
                     {user ? (
                         <div className={css.userPanel}>
-                            <span className={css.greeting}>Вітаємо, <b>{user.user.name}</b>!</span>
+                            <span className={css.greeting}>Вітаємо, <b>{user.name}</b>!</span>
                             <button onClick={handleLogout} className={css.logoutBtn} disabled={isLoading}>
                                 {isLoading ? 'Вихід...' : 'Вийти'}
                             </button>
