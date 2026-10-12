@@ -10,6 +10,9 @@ import { AxiosError } from 'axios';
 const Page = () => {
 
   const [cars, setCars] = useState<Car[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [hasPreviousPage, setHasPreviousPage] = useState<boolean>(false);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errMessage, setErrMessage] = useState<string | null>(null);
 
@@ -17,8 +20,11 @@ const Page = () => {
     const fetchCars = async () => {
       try {
         setErrMessage(null);
-        const data = await getCars({});
+        setIsLoading(true);
+        const data = await getCars(page);
         setCars(data.cars || data);
+        setHasPreviousPage(data.hasPreviousPage);
+        setHasNextPage(data.hasNextPage);
       } catch (error) {
         const err = error as AxiosError<{ message: string }>;
         const status = err.response?.status;
@@ -47,7 +53,7 @@ const Page = () => {
     };
 
     fetchCars();
-  }, []);
+  }, [page]);
   
   return (
     <main className={css.container}>
@@ -58,6 +64,23 @@ const Page = () => {
       {errMessage && <p className={css.error}>{errMessage}</p>}
 
       {!isLoading && !errMessage && <CarsList cars={cars} />}
+
+      <div className={css.carsPagination}>
+        <button
+          className={css.carsButton}
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          disabled={!hasPreviousPage || isLoading}>
+          -
+        </button>
+        <span className={css.pageNumber}>{page}</span>
+
+        <button
+          className={css.carsButton}
+          onClick={() => setPage((prev) => prev + 1)}
+          disabled={!hasNextPage || isLoading}>
+          +
+        </button>
+      </div>
     </main>
   );
 };

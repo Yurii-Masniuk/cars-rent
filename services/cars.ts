@@ -1,7 +1,11 @@
-import { Car, CreateCarBody, GetCarsParams, GetCarsResponse, UpdateCarBody } from "@/types/cars";
+import { Car, CreateCarBody, GetCarsResponse, UpdateCarBody } from "@/types/cars";
 import { proxyServer } from "./server-config";
 
-export const getCars = async (params?: GetCarsParams) => {
+export const getCars = async (page: number) => {
+    const params = {
+        page,
+        perPage: 6,
+    };;
     const res = await proxyServer.get<GetCarsResponse>('/cars', {params});
     return res.data;
 };
