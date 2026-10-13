@@ -32,12 +32,9 @@ const CarItem = ({ element }: CarItemProps) => {
 
                 <ul className={css.specs}>
                     <li>Рік: {element.year}</li>
-                    {/* <li>Категорія: {element.category}</li> */}
                     <li>Коробка передач: {element.transmission}</li>
                     <li>Тип пального: {element.fuelType}</li>
                     <li>Кількість місць: {element.seats}</li>
-                    {/* <li>Колір: {element.color}</li> */}
-                    {/* <li>Пробіг: {element.mileage}</li> */}
                 </ul>
 
                 <Link href={`/cars/${element._id}`} className={css.detailsBtn}>

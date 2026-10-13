@@ -38,8 +38,15 @@ const Page = async ({ params }: PageProps) => {
                     <p className={css.price}><b>{element.pricePerDay} $</b> / день</p>
 
                     <ul className={css.specs}>
-                        <li><span>Статус авто:</span>{' '}
-                            <span className={css[`status_${element.status}`]}>
+                        <li>
+                            <span>Статус авто:</span>{' '}
+                            <span className={
+                                element.status === 'active'
+                                    ? css.statusActive
+                                    : element.status === 'maintenance'
+                                        ? css.statusMaintenance
+                                        : css.statusInactive
+                            }>
                                 {element.status === 'active' && 'Активний'}
                                 {element.status === 'maintenance' && 'На обслуговуванні'}
                                 {element.status === 'inactive' && 'Неактивний'}
