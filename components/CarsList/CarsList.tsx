@@ -2,16 +2,15 @@
 
 import css from './CarsList.module.css';
 import CarItem from './CarItem/CarItem';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getCars } from '@/services/cars';
 import { AxiosError } from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import { useIsAdmin } from '@/hooks/useIsAdmin';
+// import { useIsAdmin } from '@/hooks/useIsAdmin';
 
 const CarsList = () => {
     // const isAdmin = useIsAdmin();
-  const [page, setPage] = useState<number>(1);
-  const [errMessage, setErrMessage] = useState<string | null>(null);
+    const [page, setPage] = useState<number>(1);
     
     const queryCars = useQuery({
         queryKey: ['cars', page],
@@ -24,34 +23,28 @@ const CarsList = () => {
     const isLoading = queryCars.isLoading;
     const error = queryCars.error;
 
-    useEffect(() => {        
+    const getErrorMessage = () => {
+        if (!error) return null;
+        const err = error as AxiosError<{ message: string }>;
+        const status = err.response?.status;
 
-        if (error) {
-            const err = error as AxiosError<{ message: string }>;
-        
-            const status = err.response?.status;
-            
-            switch (status) {
-                case 400:
-                    setErrMessage("Некоректний запит. Перевірте параметри.");
-                    break;
-                case 401:
-                    setErrMessage("Будь ласка, увійдіть у систему.");
-                    break;
-                case 404:
-                    setErrMessage("Автомобілі не знайдено.");
-                    break;
-                default:
-                    if (status && status >= 500) {
-                        setErrMessage("Помилка на сервері. Спробуйте пізніше.");
-                    } else {
-                        setErrMessage(err.response?.data?.message || err.message || "Не вдалося завантажити список автомобілів.");
-                    }
-                    break;
-            }
-        } else { setErrMessage(null) }
-    }, [error, setErrMessage]);
-        
+        switch (status) {
+            case 400:
+                return "Некоректний запит. Перевірте параметри.";
+            case 401:
+                return "Будь ласка, увійдіть у систему.";
+            case 404:
+                return "Автомобілі не знайдено.";
+            default:
+                if (status && status >= 500) {
+                    return "Помилка на сервері. Спробуйте пізніше.";
+                } else {
+                    return err.response?.data?.message || err.message || "Не вдалося завантажити список автомобілів.";
+                };
+        };
+    };
+
+    const errMessage = getErrorMessage();
         
     return (
         <div>
@@ -64,7 +57,9 @@ const CarsList = () => {
                     <CarItem key={el._id} element={el} />
                 ))}
             </ul>}
+
             {!isLoading && !error && !cars && <p className={css.noCars}>Автомобілів не знайдено</p>}
+
             <div className={css.carsPagination}>
                 <button
                     className={css.carsButton}
@@ -72,6 +67,7 @@ const CarsList = () => {
                     disabled={!hasPreviousPage || isLoading}>
                     -
                 </button>
+                
                 <span className={css.pageNumber}>{page}</span>
 
                 <button
