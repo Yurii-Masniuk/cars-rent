@@ -1,6 +1,5 @@
 import { Car } from '@/types/cars';
 import css from './CarItem.module.css';
-import Image from 'next/image';
 import Link from 'next/link';
 
 interface CarItemProps{
@@ -16,6 +15,7 @@ const CarItem = ({ element }: CarItemProps) => {
 
             <div className={css.imageWrapper}>
                 {carImage ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
                     <img 
                         src={carImage} 
                         alt={`${element.brand} ${element.model}`} 

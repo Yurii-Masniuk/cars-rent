@@ -20,6 +20,7 @@ const Page = async ({ params }: PageProps) => {
             <div className={css.carItem}>
                 <div className={css.imageWrapper}>
                     {carImage ? (
+                        /* eslint-disable-next-line @next/next/no-img-element */
                         <img 
                             src={carImage} 
                             alt={`${element.brand} ${element.model}`} 
