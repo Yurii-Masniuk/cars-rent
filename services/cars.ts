@@ -5,7 +5,7 @@ export const getCars = async (page: number) => {
     const params = {
         page,
         perPage: 6,
-    };;
+    };
     const res = await proxyServer.get<GetCarsResponse>('/cars', {params});
     return res.data;
 };

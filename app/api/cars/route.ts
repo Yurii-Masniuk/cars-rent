@@ -5,7 +5,6 @@ import { AxiosError } from "axios";
 
 export const GET = async (req: NextRequest) => {
     const params = Object.fromEntries(req.nextUrl.searchParams.entries());
-    console.log(params);
     
     try {
         const cookieStore = await cookies();

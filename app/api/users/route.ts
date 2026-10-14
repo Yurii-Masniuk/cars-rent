@@ -4,6 +4,8 @@ import { globalServer } from "@/services/server-config";
 import { AxiosError } from "axios";
 
 export const GET = async () => {
+    
+
     try {
         const cookieStore = await cookies();
         const res = await globalServer.get('/users', {
