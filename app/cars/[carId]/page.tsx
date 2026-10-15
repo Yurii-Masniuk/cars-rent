@@ -60,6 +60,7 @@ const Page = async ({ params }: PageProps) => {
                         <li><span>Колір:</span> {element.color}</li>
                         <li><span>Пробіг:</span> {element.mileage}</li>
                         <li><span>Місце знаходження:</span>{element.locationId}</li>
+                        
                     </ul>
 
                 </div>

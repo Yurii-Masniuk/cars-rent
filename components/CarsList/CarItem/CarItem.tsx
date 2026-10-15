@@ -38,7 +38,7 @@ const CarItem = ({ element }: CarItemProps) => {
                 </ul>
 
                 <Link href={`/cars/${element._id}`} className={css.detailsBtn}>
-                    Детальніше / Забронювати
+                    Деталі автомобіля
                 </Link>
 
             </div>

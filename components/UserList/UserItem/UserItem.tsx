@@ -19,7 +19,7 @@ const UserItem = ({element}:UserItemProps) => {
                     <li>Доступ: {element.isBlocked ? 'Заблоковано' : 'Доступ дозволено'}</li>
                 </ul>
                 <Link href={`/admin/users/${element._id}`} className={css.detailsBtn}>
-                    Детальніше / Редагувати
+                    Деталі користувача
                 </Link>
             </div>
         </li>
