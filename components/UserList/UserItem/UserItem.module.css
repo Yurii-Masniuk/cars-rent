@@ -57,3 +57,13 @@
 .detailsBtn:hover {
     background-color: #0369a1;
 }
+
+.statusActive {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.statusBlocked {
+    color: #ef4444;
+    font-weight: 600;
+}

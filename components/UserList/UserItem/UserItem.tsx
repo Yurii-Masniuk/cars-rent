@@ -13,7 +13,12 @@ const UserItem = ({element}:UserItemProps) => {
                 <h3>Користувач: {element.name}</h3>
                 <ul className={css.specs}>
                     <li>Статус: {element.role}</li>
-                    <li>Доступ: {element.isBlocked ? 'Заблоковано' : 'Доступ дозволено'}</li>
+                    <li>
+                        Доступ:{' '}
+                        <span className={element.isBlocked ? css.statusBlocked : css.statusActive}>
+                            {element.isBlocked ? 'Заблоковано' : 'Дозволено'}
+                        </span>
+                    </li>
                 </ul>
                 <Link href={`/admin/users/${element._id}`} className={css.detailsBtn}>
                     Деталі користувача
