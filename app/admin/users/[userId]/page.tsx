@@ -31,7 +31,7 @@ const Page = async ({ params }: PageProps) => {
                         <li><span>Статус:</span> {element.role}</li>
                         <li><span>E-mail:</span> {element.email}</li>
                         <li><span>Тел:</span> {element.phone}</li>
-                        <li><span>Номер ID:</span> {element._id}</li>
+                        <li><span>ID користувача:</span> {element._id}</li>
                         <li>
                             <span>Доступ:</span>{' '}
                             <span className={element.isBlocked ? css.statusBlocked : css.statusActive}>
