@@ -21,8 +21,14 @@ export interface GetUsersParams {
 };
 
 export interface GetUsersResponse {
+    page: number;
+    perPage: number;
+    totalPages: number;
+    totalItems: number;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
     users: User[];
- };
+};
 
 export interface UpdateUserBody { 
     name?: string;

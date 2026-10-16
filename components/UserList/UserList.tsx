@@ -5,15 +5,20 @@ import { useQuery } from '@tanstack/react-query';
 import { getUsers } from '@/services/users';
 import { AxiosError } from 'axios';
 import UserItem from './UserItem/UserItem';
+import { useState } from 'react';
 
 const UserList = () => {
 
-    const queryUsers = useQuery({
-    queryKey: ['users'],
-    queryFn: () => getUsers(),
+  const [page, setPage] = useState<number>(1);
+
+  const queryUsers = useQuery({
+    queryKey: ['users', page],
+    queryFn: () => getUsers(page),
   });
 
   const users = queryUsers.data?.users;
+  const hasPreviousPage = queryUsers.data?.hasPreviousPage;
+  const hasNextPage = queryUsers.data?.hasNextPage;
   const isLoading = queryUsers.isLoading;
   const error = queryUsers.error;
 
@@ -27,6 +32,8 @@ const UserList = () => {
         return "Некоректний запит. Перевірте параметри.";
       case 401:
         return "Будь ласка, увійдіть у систему.";
+      case 403:
+        return "Немає прав доступу.";
       case 404:
         return "Користувачів не знайдено.";
       default:
@@ -54,7 +61,26 @@ const UserList = () => {
 
       {!isLoading && !error && !users && <p className={css.noUsers}>Користувачів не знайдено</p>}
 
+      <div className={css.usersPagination}>
+        <button
+          className={css.usersButton}
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          disabled={!hasPreviousPage || isLoading}>
+          -
+        </button>
+                
+        <span className={css.pageNumber}>{page}</span>
+
+        <button
+          className={css.usersButton}
+          onClick={() => setPage((prev) => prev + 1)}
+          disabled={!hasNextPage || isLoading}>
+          +
+        </button>
+      </div>
+
     </div>
+
   );
 };
 

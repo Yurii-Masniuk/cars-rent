@@ -1,7 +1,11 @@
-import { GetUsersParams, GetUsersResponse, UpdateUserBody, User } from "@/types/users";
+import { GetUsersResponse, UpdateUserBody, User } from "@/types/users";
 import { proxyServer } from "./server-config";
 
-export const getUsers = async (params?: GetUsersParams) => {
+export const getUsers = async (page: number) => {
+    const params = {
+        page,
+        perPage: 3,
+    };
     const res = await proxyServer.get<GetUsersResponse>('/users', {params});
     return res.data;
 };
