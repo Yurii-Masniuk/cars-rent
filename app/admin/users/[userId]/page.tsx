@@ -35,7 +35,7 @@ const Page = async ({ params }: PageProps) => {
                         <li>
                             <span>Доступ:</span>{' '}
                             <span className={element.isBlocked ? css.statusBlocked : css.statusActive}>
-                                {element.isBlocked ? 'Заблоковано' : 'Доступ дозволено'}
+                                {element.isBlocked ? 'Заблоковано' : 'Дозволено'}
                             </span>
                         </li>
                     </ul>
