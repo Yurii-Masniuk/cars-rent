@@ -21,8 +21,8 @@ const Page = async ({ params }: PageProps) => {
 
     return (
         <main className={css.container}>
-            <Link href="/admin/users" className={css.backBtn}>
-                &larr; Назад до списку
+            <Link href={`/admin/users/${userId}`} className={css.backBtn}>
+                &larr; Назад
             </Link>
 
             <h2 className={css.title}>Редагувати користувача:</h2>
