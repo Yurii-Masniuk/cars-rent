@@ -18,6 +18,17 @@ const Page = async ({ params }: PageProps) => {
     });
     const element = res.data;
 
+    const formatDate = (dateString: string) => {
+        if (!dateString) return '—';
+        return new Date(dateString).toLocaleString('uk-UA', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+    };
+
     return (
         <main className={css.container}>
             <Link href="/admin/users" className={css.backBtn}>
@@ -38,6 +49,8 @@ const Page = async ({ params }: PageProps) => {
                                 {element.isBlocked ? 'Заблоковано' : 'Дозволено'}
                             </span>
                         </li>
+                        <li><span>Створено:</span> {formatDate(element.createdAt)}</li>
+                        <li><span>Оновлено:</span> {formatDate(element.updatedAt)}</li>
                     </ul>
                     <Link href={`/admin/users/${element._id}/edit`} className={css.detailsBtn}>
                         Редагування користувача

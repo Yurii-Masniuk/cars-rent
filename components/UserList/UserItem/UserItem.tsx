@@ -6,7 +6,8 @@ interface UserItemProps{
     element: User,
 };
 
-const UserItem = ({element}:UserItemProps) => {
+const UserItem = ({ element }: UserItemProps) => {
+    
     return (
         <li className={css.userItem}>
             <div className={css.content}>
