@@ -28,7 +28,8 @@ const UserFormEdit = ({ user }: UserFormEditProps) => {
         mutationFn: (body: UpdateUserBody) => updateUser(user._id, body),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['users'] });
-            router.push('/admin/users');
+            router.push(`/admin/users/${user._id}`);
+            router.refresh();
         },
     });
 

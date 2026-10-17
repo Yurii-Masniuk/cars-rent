@@ -36,7 +36,8 @@ const CarFormEdit = ({ car }: CarFormEditProps) => {
         mutationFn: (body: UpdateCarBody) => updateCarById(car._id, body),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['cars'] });
-            router.push('/admin/cars');
+            router.push(`/cars/${car._id}`);
+            router.refresh();
         },
     });
 
