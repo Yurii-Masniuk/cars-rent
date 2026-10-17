@@ -59,7 +59,7 @@ const Page = async ({ params }: PageProps) => {
                         <li><span>Кількість місць:</span> {element.seats}</li>
                         <li><span>Колір:</span> {element.color}</li>
                         <li><span>Пробіг:</span> {element.mileage}</li>
-                        <li><span>Місце знаходження:</span>{element.locationId}</li>                        
+                        <li><span>Місце знаходження:</span>{element.locationId}</li>  
                     </ul>
 
                     <Link href={`/admin/cars/${element._id}/edit`} className={css.detailsBtn}>

@@ -31,6 +31,20 @@ const CarItem = ({ element }: CarItemProps) => {
                 <p className={css.price}><b>{element.pricePerDay} $</b> / день</p>
 
                 <ul className={css.specs}>
+                    <li>
+                            <span>Статус авто:</span>{' '}
+                            <span className={
+                                element.status === 'active'
+                                    ? css.statusActive
+                                    : element.status === 'maintenance'
+                                        ? css.statusMaintenance
+                                        : css.statusInactive
+                            }>
+                                {element.status === 'active' && 'Активний'}
+                                {element.status === 'maintenance' && 'На обслуговуванні'}
+                                {element.status === 'inactive' && 'Неактивний'}
+                            </span>
+                        </li>
                     <li>Рік: {element.year}</li>
                     <li>Коробка передач: {element.transmission}</li>
                     <li>Тип пального: {element.fuelType}</li>

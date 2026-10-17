@@ -68,6 +68,26 @@
     flex-grow: 1;
 }
 
+.specs li span {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.statusActive {
+    color: #10b981 !important;
+    font-weight: 600 !important;
+}
+
+.statusMaintenance {
+    color: #f59e0b !important;
+    font-weight: 600 !important;
+}
+
+.statusInactive {
+    color: #ef4444 !important;
+    font-weight: 600 !important;
+}
+
 .detailsBtn {
     display: inline-block;
     text-align: center;
