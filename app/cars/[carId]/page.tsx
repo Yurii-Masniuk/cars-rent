@@ -65,6 +65,9 @@ const Page = async ({ params }: PageProps) => {
                     <Link href={`/admin/cars/${element._id}/edit`} className={css.detailsBtn}>
                         Редагування авто
                     </Link>
+                    <Link href={`/admin/cars/${element._id}/edit`} className={css.detailsBtn}>
+                        Видалити авто
+                    </Link>
 
                 </div>
 
