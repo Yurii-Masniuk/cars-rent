@@ -8,7 +8,11 @@ import { AxiosError } from 'axios';
 import { useQuery } from '@tanstack/react-query';
 // import { useIsAdmin } from '@/hooks/useIsAdmin';
 
-const CarsList = () => {
+export interface CarsListProps {
+    isAdminPage?: boolean,
+};
+
+const CarsList = ({isAdminPage}: CarsListProps) => {
     // const isAdmin = useIsAdmin();
     const [page, setPage] = useState<number>(1);
     
@@ -54,7 +58,10 @@ const CarsList = () => {
 
             {cars && <ul className={css.carsList}>
                 {cars.map((el) => (
-                    <CarItem key={el._id} element={el} />
+                    <div key={el._id}>
+                        <CarItem key={el._id} element={el} />
+                        {isAdminPage && <button >Редагувати</button>}
+                        </div>
                 ))}
             </ul>}
 

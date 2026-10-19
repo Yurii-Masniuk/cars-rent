@@ -62,13 +62,6 @@ const Page = async ({ params }: PageProps) => {
                         <li><span>Місце знаходження:</span>{element.locationId}</li>  
                     </ul>
 
-                    <Link href={`/admin/cars/${element._id}/edit`} className={css.detailsBtn}>
-                        Редагування авто
-                    </Link>
-                    <Link href={`/admin/cars/${element._id}/edit`} className={css.detailsBtn}>
-                        Видалити авто
-                    </Link>
-
                 </div>
 
             </div>

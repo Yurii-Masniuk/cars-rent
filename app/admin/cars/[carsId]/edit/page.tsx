@@ -21,7 +21,7 @@ const Page = async ({ params }: PageProps) => {
 
     return (
         <main className={css.container}>
-            <Link href={`/cars/${carsId}`} className={css.backBtn}>
+            <Link href={`/admin/cars/${carsId}`} className={css.backBtn}>
                 &larr; Назад
             </Link>
 
