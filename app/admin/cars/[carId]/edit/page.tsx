@@ -6,13 +6,13 @@ import { Car } from '@/types/cars';
 import CarFormEdit from '@/components/CarsList/CarFormEdit/CarFormEdit';
 
 interface PageProps{
-    params: Promise<{ carsId: string }>,
+    params: Promise<{ carId: string }>,
 };
 
 const Page = async ({ params }: PageProps) => {
-    const { carsId } = await params;
+    const { carId } = await params;
     const cookieStore = await cookies();
-    const res = await globalServer.get<Car>(`cars/${carsId}`, {
+    const res = await globalServer.get<Car>(`cars/${carId}`, {
         headers: {
             Cookie: cookieStore.toString(),
         },
@@ -21,7 +21,7 @@ const Page = async ({ params }: PageProps) => {
 
     return (
         <main className={css.container}>
-            <Link href={`/admin/cars/${carsId}`} className={css.backBtn}>
+            <Link href={`/admin/cars/${carId}`} className={css.backBtn}>
                 &larr; Назад
             </Link>
 

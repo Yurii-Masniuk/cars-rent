@@ -1,3 +1,4 @@
+import BtnEditCars from '@/components/BtnEditCars/BtnEditCars';
 import css from './page.module.css';
 import { getCarById } from '@/services/cars';
 import Link from 'next/link';
@@ -13,9 +14,11 @@ const Page = async ({ params }: PageProps) => {
 
     return (
         <main className={css.container}>
-            <Link href="/cars" className={css.backBtn}>
+            <Link href="/admin/cars" className={css.backBtn}>
                 &larr; Назад до каталогу
             </Link>
+
+            <h1>Admin cars details</h1>
 
             <div className={css.carItem}>
 
@@ -62,12 +65,7 @@ const Page = async ({ params }: PageProps) => {
                         <li><span>Місце знаходження:</span>{element.locationId}</li>  
                     </ul>
 
-                    <Link href={`/admin/cars/${element._id}/edit`} className={css.detailsBtn}>
-                        Редагування авто
-                    </Link>
-                    <Link href={`/admin/cars/${element._id}/edit`} className={css.detailsBtn}>
-                        Видалити авто
-                    </Link>
+                   <BtnEditCars element={element}/>
 
                 </div>
 

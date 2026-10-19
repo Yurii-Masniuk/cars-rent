@@ -1,3 +1,4 @@
+import BtnEditCars from '@/components/BtnEditCars/BtnEditCars';
 import css from './page.module.css';
 import CarsListAdmin from '@/components/CarsListAdmin/CarsListAdmin';
 

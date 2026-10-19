@@ -51,7 +51,7 @@ const CarItemAdmin = ({ element }: CarItemProps) => {
                     <li>Кількість місць: {element.seats}</li>
                 </ul>
 
-                <Link href={`/cars/${element._id}`} className={css.detailsBtn}>
+                <Link href={`/admin/cars/${element._id}`} className={css.detailsBtn}>
                     Деталі автомобіля
                 </Link>
 
