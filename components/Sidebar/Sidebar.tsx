@@ -10,35 +10,30 @@ import { useAuthStore } from '@/stores/auth';
 
 const SideBar = () => {
     const router = useRouter();
-    const user = useAuthStore((s) => s.user);
     const clearUser = useAuthStore((s) => s.clearUser);
 
     const [errMessage, setErrMessage] = useState<string | null>(null);
-        const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     
-        const handleLogout = async () => {
-            setErrMessage(null);
-            setIsLoading(true);
+    const handleLogout = async () => {
+        setErrMessage(null);
+        setIsLoading(true);
     
-            try {
-                await logout();
-                clearUser();
-                router.push('/login');
-            } catch (error) {
-                const err = error as AxiosError<{ message: string }>;
-                const message = err.response?.data?.message || err.message || 'ERROR';
-                setErrMessage(message);
-            } finally {
-                setIsLoading(false);
-            };
+        try {
+            await logout();
+            clearUser();
+            router.push('/login');
+        } catch (error) {
+            const err = error as AxiosError<{ message: string }>;
+            const message = err.response?.data?.message || err.message || 'ERROR';
+            setErrMessage(message);
+        } finally {
+            setIsLoading(false);
         };
+    };
 
     return (
         <aside className={css.sidebar}>
-            
-            <div className={css.logoContainer}>
-                <h2>DriveGo Admin</h2>
-            </div>
 
             <nav className={css.nav}>
                 <div className={css.authLinks}>
@@ -50,8 +45,8 @@ const SideBar = () => {
             </nav>
 
             <div className={css.logoutContainer}>
-                <button onClick={handleLogout} className={css.logoutBtn}>
-                    Вийти з акаунта
+                <button onClick={handleLogout} className={css.logoutBtn} disabled={isLoading}>
+                    {isLoading ? 'Вихід...' : 'Вийти з акаунта'}
                 </button>
             </div>
 
