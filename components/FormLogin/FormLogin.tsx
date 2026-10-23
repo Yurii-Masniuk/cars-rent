@@ -43,7 +43,7 @@ const FormLogin = () => {
             const res = await getMe();
             setUser(res);
             if (res.role === 'admin') {
-                router.push('/admin');
+                router.push('/admin/dashboard');
             } else {
                 router.push('/');
             };
