@@ -10,10 +10,10 @@ const BtnEditCars = ({ element }: BtnEditCarsProps) => {
     
     return (
         <div>
-            <Link href={`/admin/cars/${element._id}/edit`} className={css.detailsBtn}>
+            <Link href={`/admin/cars/${element._id}/edit`} className={css.editBtn}>
                 Редагувати
             </Link>
-            <Link href={`/cars`} className={css.detailsBtn}>
+            <Link href={`/cars`} className={css.deleteBtn}>
                 Видалити
             </Link>
             

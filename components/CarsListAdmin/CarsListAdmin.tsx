@@ -60,7 +60,7 @@ const CarsListAdmin = ({isAdminPage}: CarsListProps) => {
                 {cars.map((el) => (
                     <div key={el._id}>
                         <CarItemAdmin key={el._id} element={el} />
-                        {isAdminPage && <button >Редагувати</button>}
+                        {/* {isAdminPage && <button >Редагувати</button>} */}
                         </div>
                 ))}
             </ul>}
