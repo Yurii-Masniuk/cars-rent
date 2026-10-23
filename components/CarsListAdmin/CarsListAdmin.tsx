@@ -8,11 +8,11 @@ import { useQuery } from '@tanstack/react-query';
 import CarItemAdmin from './CarItemAdmin/CarItemAdmin';
 // import { useIsAdmin } from '@/hooks/useIsAdmin';
 
-export interface CarsListProps {
-    isAdminPage?: boolean,
-};
+// export interface CarsListProps {
+//     isAdminPage?: boolean,
+// };
 
-const CarsListAdmin = ({isAdminPage}: CarsListProps) => {
+const CarsListAdmin = () => {
     // const isAdmin = useIsAdmin();
     const [page, setPage] = useState<number>(1);
     

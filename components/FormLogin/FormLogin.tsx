@@ -42,7 +42,11 @@ const FormLogin = () => {
             await login(body);
             const res = await getMe();
             setUser(res);
-            router.push('/');
+            if (res.role === 'admin') {
+                router.push('/admin');
+            } else {
+                router.push('/');
+            };
         } catch (error) {
             const err = error as AxiosError<{ message: string }>;
             const status = err.response?.status;

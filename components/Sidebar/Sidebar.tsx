@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import css from './Sidebar.module.css';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { logout } from '@/services/auth';
 import { AxiosError } from 'axios';
@@ -11,6 +11,7 @@ import { useAuthStore } from '@/stores/auth';
 const SideBar = () => {
     const router = useRouter();
     const clearUser = useAuthStore((s) => s.clearUser);
+    const pathname = usePathname();
 
     const [errMessage, setErrMessage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -32,15 +33,30 @@ const SideBar = () => {
         };
     };
 
+    const navLinks = [
+        { href: '/admin/dashboard', label: 'Dashboard' },
+        { href: '/admin/cars', label: 'Автомобілі' },
+        { href: '/admin/locations', label: 'Локації' },
+        { href: '/admin/users', label: 'Користувачі' },
+    ];
+
     return (
         <aside className={css.sidebar}>
 
             <nav className={css.nav}>
                 <div className={css.authLinks}>
-                    <Link href="/admin/dashboard" className={css.link}>Dashboard</Link>
-                    <Link href="/admin/cars" className={css.link}>Автомобілі</Link>
-                    <Link href="/admin/locations" className={css.link}>Локації</Link>
-                    <Link href="/admin/users" className={css.link}>Користувачі</Link>
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href;
+                        return (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={`${css.link} ${isActive ? css.active : ''}`}
+                            >
+                                {link.label}
+                            </Link>
+                        );
+                    })}
                 </div>
             </nav>
 
