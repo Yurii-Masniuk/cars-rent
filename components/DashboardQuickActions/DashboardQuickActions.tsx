@@ -1,13 +1,37 @@
+'use client';
+
+import Link from 'next/link';
 import css from './DashboardQuickActions.module.css';
 
-interface DashboardQuickActionsProps{
-
-}
-
-const DashboardQuickActions = ({}:DashboardQuickActionsProps) => {
+const DashboardQuickActions = () => {
   return (
-    <div className={css['dashboardQuickActions']}>
-      DashboardQuickActions
+    <div className={css.actionsCard}>
+      <div className={css.actionsHeader}>
+        <h3>Швидкі дії</h3>
+        <span className={css.actionsSubtitle}>Керування системою</span>
+      </div>
+
+      <div className={css.actionsGrid}>
+        <Link href="/admin/cars/new" className={css.actionButton}>
+          <span className={css.icon}>+</span>
+          <span>Додати новий автомобіль</span>
+        </Link>
+
+        <Link href="/admin/cars" className={css.actionButton}>
+          <span className={css.icon}>🚗</span>
+          <span>Керування автопарком</span>
+        </Link>
+
+        <Link href="/admin/locations/new" className={css.actionButton}>
+          <span className={css.icon}>📍</span>
+          <span>Створити локацію</span>
+        </Link>
+
+        <Link href="/admin/users" className={css.actionButton}>
+          <span className={css.icon}>👥</span>
+          <span>Користувачі</span>
+        </Link>
+      </div>
     </div>
   );
 };
