@@ -8,8 +8,6 @@ const Page = async () => {
   
   return (
     <div className={css.dashboardContainer}>
-      <h1>Dashboard</h1>
-      <h2>Програміст - людина талановита і винахідлива</h2>
 
       <DashboardStatsCards />
       <div className={css.chartsGrid}>

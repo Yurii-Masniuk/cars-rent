@@ -3,7 +3,7 @@ import css from './page.module.css';
 
 const Page = () => {
   return (
-    <div className={css['page']}>
+    <div className={css.revenueChart}>
       <DashboardRevenueChart/>
     </div>
   );

@@ -1,0 +1,35 @@
+.dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.dashboardContainer h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.dashboardContainer p,
+.dashboardContainer h2 {
+    font-size: 15px;
+    color: #4b5563;
+    margin: 0;
+}
+
+.chartsGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    width: 100%;
+}
+
+.quickActions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
