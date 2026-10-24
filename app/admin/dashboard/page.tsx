@@ -2,7 +2,7 @@ import DashboardStatsCards from '@/components/DashboardStatsCards/DashboardStats
 import css from './page.module.css';
 import DashboardFleetStats from '@/components/DashboardFleetStats/DashboardFleetStats';
 import DashboardQuickActions from '@/components/DashboardQuickActions/DashboardQuickActions';
-import Link from 'next/link';
+import DashboardRevenueChart from '@/components/DashboardRevenueChart/DashboardRevenueChart';
 
 const Page = async () => {
   
@@ -11,9 +11,7 @@ const Page = async () => {
 
       <DashboardStatsCards />
       <div className={css.chartsGrid}>
-        <Link href={'/admin/dashboard/revenue'}>
-          Дохід за поточний місяц
-        </Link>
+        <DashboardRevenueChart />
         <DashboardFleetStats />
       </div>
       <div className={css.quickActions}>
