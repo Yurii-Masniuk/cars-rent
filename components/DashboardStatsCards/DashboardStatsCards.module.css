@@ -1,0 +1,79 @@
+.cardsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.cardList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-top: 4px solid #2563eb;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    border-color: #cbd5e1;
+    border-top-color: #1d4ed8;
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1), 0 4px 6px -4px rgba(37, 99, 235, 0.1);
+    transform: translateY(-3px);
+}
+
+.cardTitle {
+    font-size: 13px;
+    color: #4b5563;
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cardValue {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2563eb;
+    margin: 0;
+}
+
+.cardUnit {
+    font-size: 14px;
+    font-weight: 600;
+    color: #9ca3af;
+}
+
+.loading {
+    color: #4b5563;
+    font-size: 15px;
+    padding: 10px 0;
+}
+
+.error {
+    color: #dc2626;
+    background-color: #fef2f2;
+    border: 1px solid #fee2e2;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.noData {
+    color: #6b7280;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}

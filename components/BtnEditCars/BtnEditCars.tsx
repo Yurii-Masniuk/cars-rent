@@ -13,7 +13,7 @@ const BtnEditCars = ({ element }: BtnEditCarsProps) => {
             <Link href={`/admin/cars/${element._id}/edit`} className={css.editBtn}>
                 Редагувати
             </Link>
-            <Link href={`/cars`} className={css.deleteBtn}>
+            <Link href={`/admin/cars`} className={css.deleteBtn}>
                 Видалити
             </Link>
             

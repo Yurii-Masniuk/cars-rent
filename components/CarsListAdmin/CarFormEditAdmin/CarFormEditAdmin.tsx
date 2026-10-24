@@ -1,7 +1,7 @@
 'use client';
 
 import { Car, UpdateCarBody } from '@/types/cars';
-import css from './CarFormEdit.module.css';
+import css from './CarFormEditAdmin.module.css';
 import { useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ interface CarFormEditProps{
     car: Car,
 };
 
-const CarFormEdit = ({ car }: CarFormEditProps) => {
+const CarFormEditAdmin = ({ car }: CarFormEditProps) => {
     const router = useRouter();
     const queryClient = useQueryClient();
 
@@ -36,7 +36,7 @@ const CarFormEdit = ({ car }: CarFormEditProps) => {
         mutationFn: (body: UpdateCarBody) => updateCarById(car._id, body),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['cars'] });
-            router.push(`/cars/${car._id}`);
+            router.push(`/admin/cars/${car._id}`);
             router.refresh();
         },
     });
@@ -100,7 +100,7 @@ const CarFormEdit = ({ car }: CarFormEditProps) => {
                     <input
                         name='color'
                         type="text"
-                        value={formData.model || ''}
+                        value={formData.color || ''}
                         onChange={handleChange}
                     />
                 </div>
@@ -207,4 +207,4 @@ const CarFormEdit = ({ car }: CarFormEditProps) => {
     );
 };
 
-export default CarFormEdit;
+export default CarFormEditAdmin;

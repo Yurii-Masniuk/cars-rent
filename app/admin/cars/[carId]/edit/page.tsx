@@ -3,7 +3,7 @@ import css from './page.module.css';
 import { globalServer } from '@/services/server-config';
 import Link from 'next/link';
 import { Car } from '@/types/cars';
-import CarFormEdit from '@/components/CarsList/CarFormEdit/CarFormEdit';
+import CarFormEditAdmin from '@/components/CarsListAdmin/CarFormEditAdmin/CarFormEditAdmin';
 
 interface PageProps{
     params: Promise<{ carId: string }>,
@@ -26,7 +26,7 @@ const Page = async ({ params }: PageProps) => {
             </Link>
 
             <h2 className={css.title}>Редагувати авто:</h2>
-            <CarFormEdit car={element} />
+            <CarFormEditAdmin car={element}/>
         </main>
     );
 };

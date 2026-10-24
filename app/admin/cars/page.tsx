@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <main className={css.container}>
       <h2 className={css.title}>Список автомобілів</h2>
-      <CarsListAdmin isAdminPage={true} />
+      <CarsListAdmin />
     </main>
   );
 };
