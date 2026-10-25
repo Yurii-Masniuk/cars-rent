@@ -7,7 +7,7 @@ const DashboardQuickActions = () => {
   return (
     <div className={css.actionsCard}>
       <div className={css.actionsHeader}>
-        <h3>Швидкі дії</h3>
+        <h3>Операції</h3>
         <span className={css.actionsSubtitle}>Керування системою</span>
       </div>
 
