@@ -1,7 +1,14 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .actionsWrapper {
     display: flex;
     gap: 12px;
     margin-top: 16px;
+    align-items: center;
 }
 
 .editBtn {
@@ -16,7 +23,6 @@
     font-weight: 500;
     text-decoration: none;
     transition: background-color 0.2s ease;
-    margin-right: 12px;
 }
 
 .editBtn:hover {
@@ -30,13 +36,26 @@
     padding: 8px 16px;
     background-color: #e00000;
     color: #ffffff;
+    border: none;
     border-radius: 6px;
     font-size: 14px;
     font-weight: 500;
-    text-decoration: none;
+    cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
-.deleteBtn:hover {
+.deleteBtn:hover:not(:disabled) {
     background-color: #b30000;
+}
+
+.deleteBtn:disabled {
+    background-color: #fca5a5;
+    cursor: not-allowed;
+}
+
+.errorText {
+    color: #ef4444;
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 0;
 }
