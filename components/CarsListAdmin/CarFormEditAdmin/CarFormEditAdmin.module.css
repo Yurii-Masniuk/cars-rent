@@ -5,7 +5,6 @@
     padding: 2.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     max-width: 850px;
-    /* Збільшуємо максимальну ширину */
     width: 100%;
 }
 
@@ -15,15 +14,12 @@
     color: #1e293b;
     margin-bottom: 1.5rem;
     grid-column: 1 / -1;
-    /* Заголовок на всю ширину */
 }
 
 .formEditUser form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* Робимо два рівні стовпчики */
     gap: 1.25rem 1.5rem;
-    /* Відступи між елементами */
 }
 
 .formEditUser div {
@@ -32,7 +28,6 @@
     gap: 0.5rem;
 }
 
-/* Елементи, які мають розтягуватися на всю ширину (наприклад, статус, кнопка помилки чи збереження) */
 .formEditUser .fullWidth {
     grid-column: 1 / -1;
 }
@@ -63,7 +58,6 @@
 
 .formEditUser button {
     grid-column: 1 / -1;
-    /* Кнопка на всю ширину внизу */
     margin-top: 0.5rem;
     background-color: #0284c7;
     color: white;
@@ -114,7 +108,6 @@
 
 .accessField {
     grid-column: 1 / -1;
-    /* Блок статусу на всю ширину */
     display: flex;
     align-items: center;
     gap: 0.75rem;
