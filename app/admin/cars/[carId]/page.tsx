@@ -2,15 +2,20 @@ import BtnEditCars from '@/components/BtnEditCars/BtnEditCars';
 import css from './page.module.css';
 import { getCarById } from '@/services/cars';
 import Link from 'next/link';
+import { getLocationById } from '@/services/locations';
 
 interface PageProps {
-    params: Promise<{ carId: string }>;
+    params: Promise<{ carId: string, locationId: string }>;
 }
 
 const Page = async ({ params }: PageProps) => {
     const { carId } = await params;
+        
     const element = await getCarById(carId);
     const carImage = element.images?.[0];
+
+    const { locationId } = element;
+    const elLocation = await getLocationById(locationId);
 
     return (
         <main className={css.container}>
@@ -62,7 +67,7 @@ const Page = async ({ params }: PageProps) => {
                         <li><span>Кількість місць:</span> {element.seats}</li>
                         <li><span>Колір:</span> {element.color}</li>
                         <li><span>Пробіг:</span> {element.mileage}</li>
-                        <li><span>Місце знаходження:</span>{element.locationId}</li>  
+                        <li><span>Місце знаходження:</span>{elLocation.city}</li>  
                     </ul>
 
                    <BtnEditCars element={element}/>
