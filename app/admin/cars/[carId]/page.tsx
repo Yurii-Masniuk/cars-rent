@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { getLocationById } from '@/services/locations';
 
 interface PageProps {
-    params: Promise<{ carId: string, locationId: string }>;
+    params: Promise<{ carId: string }>;
 }
 
 const Page = async ({ params }: PageProps) => {
