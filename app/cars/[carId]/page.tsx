@@ -1,5 +1,6 @@
 import css from './page.module.css';
 import { getCarById } from '@/services/cars';
+import { getLocationById } from '@/services/locations';
 import Link from 'next/link';
 
 interface PageProps {
@@ -8,8 +9,12 @@ interface PageProps {
 
 const Page = async ({ params }: PageProps) => {
     const { carId } = await params;
+
     const element = await getCarById(carId);
     const carImage = element.images?.[0];
+
+    const { locationId } = element;
+        const elLocation = await getLocationById(locationId);
 
     return (
         <main className={css.container}>
@@ -59,7 +64,7 @@ const Page = async ({ params }: PageProps) => {
                         <li><span>Кількість місць:</span> {element.seats}</li>
                         <li><span>Колір:</span> {element.color}</li>
                         <li><span>Пробіг:</span> {element.mileage}</li>
-                        <li><span>Місце знаходження:</span>{element.locationId}</li>  
+                        <li><span>Місце знаходження:</span>{elLocation.city}</li>  
                     </ul>
 
                 </div>
