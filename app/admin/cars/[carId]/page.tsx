@@ -3,6 +3,7 @@ import css from './page.module.css';
 import { getCarById } from '@/services/cars';
 import Link from 'next/link';
 import { getLocationById } from '@/services/locations';
+import Image from 'next/image';
 
 interface PageProps {
     params: Promise<{ carId: string }>;
@@ -29,8 +30,10 @@ const Page = async ({ params }: PageProps) => {
 
                 <div className={css.imageWrapper}>
                     {carImage ? (
-                        /* eslint-disable-next-line @next/next/no-img-element */
-                        <img
+                        
+                        <Image
+                            width={500}
+                            height={500}
                             src={carImage}
                             alt={`${element.brand} ${element.model}`}
                             className={css.image}
