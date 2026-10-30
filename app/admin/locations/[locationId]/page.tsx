@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { globalServer } from '@/services/server-config';
 import Link from 'next/link';
 import { Location } from '@/types/locations';
+import BtnEditLocations from '@/components/BtnEditLocations/BtnEditLocations';
 
 interface PageProps{
     params: Promise<{ locationId: string }>,
@@ -45,7 +46,7 @@ const Page = async ({ params }: PageProps) => {
                         <li><span>Час роботи: </span> {element.openingTime} - {element.closingTime}</li>
                     </ul>
 
-                    {/* <BtnEditCars element={element} /> */}
+                    <BtnEditLocations element={element}/>
 
                 </div>
 
