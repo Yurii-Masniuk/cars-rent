@@ -2,7 +2,6 @@
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
     border-top: 4px solid #0284c7;
-    /* Синій акцент зверху, як у дашборді */
     border-radius: 0.75rem;
     padding: 1.5rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -27,7 +26,7 @@
 .specs {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 1rem 0;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -42,4 +41,22 @@
     background-color: #f8fafc;
     border-radius: 0.375rem;
     border: 1px solid #f1f5f9;
+}
+
+.detailsBtn {
+    display: inline-block;
+    text-align: center;
+    background-color: #0284c7;
+    color: white;
+    padding: 0.625rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+    margin-top: 0.5rem;
+}
+
+.detailsBtn:hover {
+    background-color: #0369a1;
 }

@@ -51,7 +51,7 @@ const LocationsList = () => {
             {isLoading && <p className={css.loading}>Завантаження...</p>}
             {errMessage && <p className={css.error}>{errMessage}</p>}
 
-            {locations && <ul className={css.carsList}>
+            {locations && <ul className={css.locationsList}>
                 {locations.map((el) => (
                     <div key={el._id}>
                         <LocationItem key={el._id} element={el} />
@@ -59,9 +59,9 @@ const LocationsList = () => {
                 ))}
             </ul>}
 
-            <div className={css.carsPagination}>
+            <div className={css.locationsPagination}>
                 <button
-                    className={css.carsButton}
+                    className={css.locationsButton}
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                     disabled={!hasPreviousPage || isLoading}>
                    &larr; Попередня
@@ -70,7 +70,7 @@ const LocationsList = () => {
                 <span className={css.pageNumber}>{page}</span>
 
                 <button
-                    className={css.carsButton}
+                    className={css.locationsButton}
                     onClick={() => setPage((prev) => prev + 1)}
                     disabled={!hasNextPage || isLoading}>
                     Наступна &rarr;

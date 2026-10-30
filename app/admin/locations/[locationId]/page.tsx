@@ -1,6 +1,8 @@
-import css from './Page.module.css';
+import css from './page.module.css';
 import { cookies } from 'next/headers';
 import { globalServer } from '@/services/server-config';
+import Link from 'next/link';
+import { Location } from '@/types/locations';
 
 interface PageProps{
     params: Promise<{ locationId: string }>,
@@ -16,11 +18,41 @@ const Page = async ({ params }: PageProps) => {
         });
         const element = res.data;
 
-  return (
-    <div className={css['page']}>
-      Page
-    </div>
-  );
+    return (
+        <main className={css.container}>
+            <Link href="/admin/locations" className={css.backBtn}>
+                &larr; Назад до списку локацій
+            </Link>
+      
+            <h1>Admin locations details</h1>
+
+            <div className={css.locationItem}>
+
+                <div className={css.content}>
+
+                    <h3>Адреса: {element.address}</h3>
+                    
+                    <ul className={css.specs}>
+                        <li>
+                            <span>Статус:</span>
+                            <span className={element.isActive ? css.statusActive : css.statusInactive}>
+                                {element.isActive ? 'Активна' : 'Неактивна'}
+                            </span>
+                        </li>
+                        <li><span>Назва локації:</span> {element.name}</li>
+                        <li><span>Місто:</span> {element.city}</li>
+                        <li><span>Телефон:</span> {element.phone}</li>
+                        <li><span>Час роботи:</span> {element.openingTime} - {element.closingTime}</li>
+                    </ul>
+
+                    {/* <BtnEditCars element={element} /> */}
+
+                </div>
+
+            </div>
+
+        </main>
+    );
 };
 
 export default Page;

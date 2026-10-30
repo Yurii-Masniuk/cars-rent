@@ -21,7 +21,7 @@
     margin: 0;
 }
 
-.carsList {
+.locationsList {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -35,14 +35,14 @@
     display: flex;
 }
 
-.carsPagination {
+.locationsPagination {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
 }
 
-.carsButton {
+.locationsButton {
     background-color: #0284c7;
     color: white;
     border: none;
@@ -54,11 +54,11 @@
     transition: background-color 0.2s ease;
 }
 
-.carsButton:hover:not(:disabled) {
+.locationsButton:hover:not(:disabled) {
     background-color: #0369a1;
 }
 
-.carsButton:disabled {
+.locationsButton:disabled {
     background-color: #cbd5e1;
     cursor: not-allowed;
 }
