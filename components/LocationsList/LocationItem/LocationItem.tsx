@@ -9,24 +9,25 @@ interface LocationItemProps{
 const LocationItem = ({ element }: LocationItemProps) => {
     
     return (
-        <div className={css.content}>
-            <h3>Місто: {element.city}</h3>
+        <div className={css.locationItem}>
+            <div className={css.content}>
+                <h3>Місто: {element.city}</h3>
 
-            <ul className={css.specs}>
-                <li>Назва локації: {element.name}</li>
-                <li>Телефон: {element.phone}</li>
-                <li>
-                    <span>Статус:</span>
-                    <span className={element.isActive ? css.statusActive : css.statusInactive}>
-                        {element.isActive ? 'Активна' : 'Неактивна'}
-                    </span>
-                </li>
-            </ul>
+                <ul className={css.specs}>
+                    <li>Назва локації: {element.name}</li>
+                    <li>Телефон: {element.phone}</li>
+                    <li>
+                        <span>Статус: </span>
+                        <span className={element.isActive ? css.statusActive : css.statusInactive}>
+                            {element.isActive ? 'Активна' : 'Неактивна'}
+                        </span>
+                    </li>
+                </ul>
 
-            <Link href={`/admin/locations/${element._id}`} className={css.detailsBtn}>
-                Деталі локації
-            </Link>
-      
+                <Link href={`/admin/locations/${element._id}`} className={css.detailsBtn}>
+                    Деталі локації
+                </Link>
+            </div>
         </div>
     );
 };

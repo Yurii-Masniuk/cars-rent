@@ -51,7 +51,7 @@ const LocationsList = () => {
             {errMessage && <p className={css.error}>{errMessage}</p>}
 
             {locations && (
-                <ul className={css.locationsGrid}>
+                <ul className={css.locationsList}>
                     {locations.map((el) => (
                         <li key={el._id} className={css.listItem}>
                             <LocationItem element={el} />
@@ -60,6 +60,8 @@ const LocationsList = () => {
                 </ul>
             )}
 
+            {!isLoading && !error && !locations && <p className={css.noLocations}>Локацій не знайдено</p>}
+            
             <div className={css.locationsPagination}>
                 <button
                     className={css.locationsButton}

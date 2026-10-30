@@ -34,15 +34,15 @@ const Page = async ({ params }: PageProps) => {
                     
                     <ul className={css.specs}>
                         <li>
-                            <span>Статус:</span>
+                            <span>Статус: </span>
                             <span className={element.isActive ? css.statusActive : css.statusInactive}>
                                 {element.isActive ? 'Активна' : 'Неактивна'}
                             </span>
                         </li>
-                        <li><span>Назва локації:</span> {element.name}</li>
-                        <li><span>Адреса:</span> {element.address}</li>
-                        <li><span>Телефон:</span> {element.phone}</li>
-                        <li><span>Час роботи:</span> {element.openingTime} - {element.closingTime}</li>
+                        <li><span>Назва локації: </span> {element.name}</li>
+                        <li><span>Адреса: </span> {element.address}</li>
+                        <li><span>Телефон: </span> {element.phone}</li>
+                        <li><span>Час роботи: </span> {element.openingTime} - {element.closingTime}</li>
                     </ul>
 
                     {/* <BtnEditCars element={element} /> */}
