@@ -63,7 +63,6 @@ const CarFormEditAdmin = ({ car }: CarFormEditProps) => {
     const errMessage = getErrorMessage();
     const isLoading = mutation.isPending;
 
-
     return (
         <div className={css.formEditUser}>
             <form onSubmit={handleSubmit}>
