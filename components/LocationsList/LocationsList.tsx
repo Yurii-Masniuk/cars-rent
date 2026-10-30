@@ -46,25 +46,26 @@ const LocationsList = () => {
         const errMessage = getErrorMessage();
 
     return (
-        <div className={css.locationsList}>
-          
+        <div className={css.wrapper}>
             {isLoading && <p className={css.loading}>Завантаження...</p>}
             {errMessage && <p className={css.error}>{errMessage}</p>}
 
-            {locations && <ul className={css.locationsList}>
-                {locations.map((el) => (
-                    <div key={el._id}>
-                        <LocationItem key={el._id} element={el} />
-                    </div>
-                ))}
-            </ul>}
+            {locations && (
+                <ul className={css.locationsGrid}>
+                    {locations.map((el) => (
+                        <li key={el._id} className={css.listItem}>
+                            <LocationItem element={el} />
+                        </li>
+                    ))}
+                </ul>
+            )}
 
             <div className={css.locationsPagination}>
                 <button
                     className={css.locationsButton}
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                     disabled={!hasPreviousPage || isLoading}>
-                   &larr; Попередня
+                    &larr; Попередня
                 </button>
                 
                 <span className={css.pageNumber}>{page}</span>
@@ -76,7 +77,6 @@ const LocationsList = () => {
                     Наступна &rarr;
                 </button>
             </div>
-
         </div>
     );
 };

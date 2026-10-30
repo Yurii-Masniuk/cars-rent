@@ -30,7 +30,7 @@ const Page = async ({ params }: PageProps) => {
 
                 <div className={css.content}>
 
-                    <h3>Адреса: {element.address}</h3>
+                    <h3>Місто: {element.city}</h3>
                     
                     <ul className={css.specs}>
                         <li>
@@ -40,7 +40,7 @@ const Page = async ({ params }: PageProps) => {
                             </span>
                         </li>
                         <li><span>Назва локації:</span> {element.name}</li>
-                        <li><span>Місто:</span> {element.city}</li>
+                        <li><span>Адреса:</span> {element.address}</li>
                         <li><span>Телефон:</span> {element.phone}</li>
                         <li><span>Час роботи:</span> {element.openingTime} - {element.closingTime}</li>
                     </ul>

@@ -72,7 +72,7 @@ const CarsList = ({isAdminPage}: CarsListProps) => {
                     className={css.carsButton}
                     onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
                     disabled={!hasPreviousPage || isLoading}>
-                    -
+                    &larr; Попередня
                 </button>
                 
                 <span className={css.pageNumber}>{page}</span>
@@ -81,7 +81,7 @@ const CarsList = ({isAdminPage}: CarsListProps) => {
                     className={css.carsButton}
                     onClick={() => setPage((prev) => prev + 1)}
                     disabled={!hasNextPage || isLoading}>
-                    +
+                    Наступна &rarr;
                 </button>
             </div>
 

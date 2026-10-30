@@ -10,12 +10,17 @@ const LocationItem = ({ element }: LocationItemProps) => {
     
     return (
         <div className={css.content}>
-            <h3>Локація: {element.address}</h3>
+            <h3>Місто: {element.city}</h3>
 
             <ul className={css.specs}>
                 <li>Назва локації: {element.name}</li>
-                <li>Місто: {element.city}</li>
                 <li>Телефон: {element.phone}</li>
+                <li>
+                    <span>Статус:</span>
+                    <span className={element.isActive ? css.statusActive : css.statusInactive}>
+                        {element.isActive ? 'Активна' : 'Неактивна'}
+                    </span>
+                </li>
             </ul>
 
             <Link href={`/admin/locations/${element._id}`} className={css.detailsBtn}>
