@@ -1,16 +1,28 @@
 'use client';
 
+import { GetLocationsResponse, Location as LocationType } from '@/types/locations';
+
 import { CreateCarBody } from '@/types/cars';
 import css from './CarFormCreateAdmin.module.css';
 import { useRouter } from 'next/navigation';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { createCar } from '@/services/cars';
 import { AxiosError } from 'axios';
+import { getLocations } from '@/services/locations';
+
 
 const CarFormCreateAdmin = () => {
     const router = useRouter();
     const queryClient = useQueryClient();
+
+    const { data: locationsData } = useQuery({
+        queryKey: ['locations-dropdown'],
+        queryFn: () => getLocations(1),
+    });
+
+    const rawData = locationsData as GetLocationsResponse | undefined;
+    const locationsList: LocationType[] = rawData?.locations || [];
 
     const [formData, setFormData] = useState<CreateCarBody>({
         locationId: '',
@@ -51,31 +63,36 @@ const CarFormCreateAdmin = () => {
     };
 
     const getErrorMessage = () => {
-            if (!mutation.error) return null;
-            const err = mutation.error as AxiosError<{ message: string }>;
-            return err.response?.data?.message || err.message || "Помилка при створенні даних автомобіля";
-        };
+        if (!mutation.error) return null;
+        const err = mutation.error as AxiosError<{ message: string }>;
+        return err.response?.data?.message || err.message || "Помилка при створенні даних автомобіля";
+    };
         
-        const errMessage = getErrorMessage();
-        const isLoading = mutation.isPending;   
+    const errMessage = getErrorMessage();
+    const isLoading = mutation.isPending;
 
     
-  return (
+    return (
         <div className={css.formCreateUser}>
             <form onSubmit={handleSubmit}>
                 <h3>Створити новий автомобіль</h3>
                 
                 <div>
-                    <label>ID Локації</label>
-                    <input
+                    <label>Локація</label>
+                    <select
                         name='locationId'
-                        type="text"
                         value={formData.locationId}
                         onChange={handleChange}
                         required
-                    />
+                    >
+                        <option value="" disabled>Оберіть локацію</option>
+                        {locationsList.map((el) => (
+                            <option key={el._id} value={el._id}>
+                                {el.city} — {el.name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
-
                 <div>
                     <label>Бренд</label>
                     <input

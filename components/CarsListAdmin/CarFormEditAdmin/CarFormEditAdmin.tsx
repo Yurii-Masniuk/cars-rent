@@ -3,10 +3,12 @@
 import { Car, UpdateCarBody } from '@/types/cars';
 import css from './CarFormEditAdmin.module.css';
 import { useRouter } from 'next/navigation';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { updateCarById } from '@/services/cars';
 import { AxiosError } from 'axios';
+import { getLocations } from '@/services/locations';
+import { GetLocationsResponse, Location as LocationType } from '@/types/locations';
 
 interface CarFormEditProps{
     car: Car,
@@ -15,6 +17,14 @@ interface CarFormEditProps{
 const CarFormEditAdmin = ({ car }: CarFormEditProps) => {
     const router = useRouter();
     const queryClient = useQueryClient();
+
+    const { data: locationsData } = useQuery({
+        queryKey: ['locations-dropdown'],
+        queryFn: () => getLocations(1),
+    });
+
+    const rawData = locationsData as GetLocationsResponse | undefined;
+    const locationsList: LocationType[] = rawData?.locations || [];
 
     const [formData, setFormData] = useState<UpdateCarBody>({
         locationId: car.locationId,
@@ -67,6 +77,22 @@ const CarFormEditAdmin = ({ car }: CarFormEditProps) => {
         <div className={css.formEditUser}>
             <form onSubmit={handleSubmit}>
                 <h3>Редагування</h3>
+                <div>
+                    <label>Локація</label>
+                    <select
+                        name='locationId'
+                        value={formData.locationId || ''}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="" disabled>Оберіть локацію</option>
+                        {locationsList.map((el) => (
+                            <option key={el._id} value={el._id}>
+                                {el.city} — {el.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 <div>
                     <label>Бренд</label>
                     <input
