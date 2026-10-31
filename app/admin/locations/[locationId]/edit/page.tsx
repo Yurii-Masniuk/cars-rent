@@ -3,7 +3,7 @@ import css from './page.module.css';
 import { globalServer } from '@/services/server-config';
 import Link from 'next/link';
 import { Location } from '@/types/locations';
-import LocationFormEdit from '@/components/LocationFormEdit/LocationFormEdit';
+import LocationFormEdit from '@/components/LocationsList/LocationFormEdit/LocationFormEdit';
 
 interface PageProps{
     params: Promise<{ locationId: string }>,
