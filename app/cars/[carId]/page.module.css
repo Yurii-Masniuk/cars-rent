@@ -152,3 +152,33 @@
 .bookButton:hover {
     background-color: #0369a1;
 }
+
+.bookButton:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.bookButton:disabled:hover {
+    background-color: #cbd5e1;
+}
+
+.bookLink {
+    display: block;
+    background-color: #0284c7;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.bookLink:hover {
+    background-color: #0369a1;
+}

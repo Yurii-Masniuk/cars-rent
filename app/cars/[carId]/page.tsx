@@ -15,7 +15,7 @@ const Page = async ({ params }: PageProps) => {
     const carImage = element.images?.[0];
 
     const { locationId } = element;
-        const elLocation = await getLocationById(locationId);
+    const elLocation = await getLocationById(locationId);
 
     return (
         <main className={css.container}>
@@ -39,17 +39,17 @@ const Page = async ({ params }: PageProps) => {
                 </div>
 
                 <div className={css.content}>
-                    {/* Назва та ціна по центру */}
+
                     <div className={css.headerCenter}>
                         <h3>{element.brand} {element.model}</h3>
                         <p className={css.price}><b>{element.pricePerDay} $</b> / день</p>
                     </div>
 
-                    {/* Дві колонки з однаковою стилістикою */}
                     <div className={css.contentColumns}>
-                        {/* Ліва колонка: Характеристики авто */}
+
                         <div className={css.columnCard}>
                             <h4>Характеристики</h4>
+
                             <ul className={css.specsList}>
                                 <li><span>Місце знаходження:</span> {elLocation.city}</li>
                                 <li>
@@ -76,7 +76,6 @@ const Page = async ({ params }: PageProps) => {
                             </ul>
                         </div>
 
-                        {/* Права колонка: Інформація про локацію */}
                         <div className={css.columnCard}>
                             <h4>Місце знаходження</h4>
                             <p><strong>Назва:</strong> {elLocation?.name || ''}</p>
@@ -87,10 +86,15 @@ const Page = async ({ params }: PageProps) => {
                         </div>
                     </div>
 
-                    {/* Кнопка забронювати окремо під колонками */}
-                    <button className={css.bookButton}>
-                        Забронювати
-                    </button>
+                    {element.status === 'active' ? (
+                        <Link href={`/admin/bookings`} className={css.bookLink}>
+                            Забронювати
+                        </Link>
+                    ) : (
+                        <button className={css.bookButton} disabled>
+                            Забронювати
+                        </button>
+                    )}
                 </div>
             </div>
         </main>
