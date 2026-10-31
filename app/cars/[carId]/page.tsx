@@ -24,7 +24,6 @@ const Page = async ({ params }: PageProps) => {
             </Link>
 
             <div className={css.carItem}>
-
                 <div className={css.imageWrapper}>
                     {carImage ? (
                         <Image
@@ -40,37 +39,59 @@ const Page = async ({ params }: PageProps) => {
                 </div>
 
                 <div className={css.content}>
+                    {/* Назва та ціна по центру */}
+                    <div className={css.headerCenter}>
+                        <h3>{element.brand} {element.model}</h3>
+                        <p className={css.price}><b>{element.pricePerDay} $</b> / день</p>
+                    </div>
 
-                    <h3>{element.brand} {element.model}</h3>
-                    <p className={css.price}><b>{element.pricePerDay} $</b> / день</p>
+                    {/* Дві колонки з однаковою стилістикою */}
+                    <div className={css.contentColumns}>
+                        {/* Ліва колонка: Характеристики авто */}
+                        <div className={css.columnCard}>
+                            <h4>Характеристики</h4>
+                            <ul className={css.specsList}>
+                                <li><span>Місце знаходження:</span> {elLocation.city}</li>
+                                <li>
+                                    <span>Статус авто:</span>{' '}
+                                    <span className={
+                                        element.status === 'active'
+                                            ? css.statusActive
+                                            : element.status === 'maintenance'
+                                                ? css.statusMaintenance
+                                                : css.statusInactive
+                                    }>
+                                        {element.status === 'active' && 'Активний'}
+                                        {element.status === 'maintenance' && 'На обслуговуванні'}
+                                        {element.status === 'inactive' && 'Неактивний'}
+                                    </span>
+                                </li>
+                                <li><span>Рік:</span> {element.year}</li>
+                                <li><span>Категорія:</span> {element.category}</li>
+                                <li><span>Коробка передач:</span> {element.transmission}</li>
+                                <li><span>Тип пального:</span> {element.fuelType}</li>
+                                <li><span>Кількість місць:</span> {element.seats}</li>
+                                <li><span>Колір:</span> {element.color}</li>
+                                <li><span>Пробіг:</span> {element.mileage} км</li>
+                            </ul>
+                        </div>
 
-                    <ul className={css.specs}>
-                        <li>
-                            <span>Статус авто:</span>{' '}
-                            <span className={
-                                element.status === 'active'
-                                    ? css.statusActive
-                                    : element.status === 'maintenance'
-                                        ? css.statusMaintenance
-                                        : css.statusInactive
-                            }>
-                                {element.status === 'active' && 'Активний'}
-                                {element.status === 'maintenance' && 'На обслуговуванні'}
-                                {element.status === 'inactive' && 'Неактивний'}
-                            </span>
-                        </li>
-                        <li><span>Рік:</span> {element.year}</li>
-                        <li><span>Категорія:</span> {element.category}</li>
-                        <li><span>Коробка передач:</span> {element.transmission}</li>
-                        <li><span>Тип пального:</span> {element.fuelType}</li>
-                        <li><span>Кількість місць:</span> {element.seats}</li>
-                        <li><span>Колір:</span> {element.color}</li>
-                        <li><span>Пробіг:</span> {element.mileage}</li>
-                        <li><span>Місце знаходження:</span>{elLocation.city}</li>  
-                    </ul>
+                        {/* Права колонка: Інформація про локацію */}
+                        <div className={css.columnCard}>
+                            <h4>Місце знаходження</h4>
+                            <p><strong>Назва:</strong> {elLocation?.name || ''}</p>
+                            <p><strong>Місто:</strong> {elLocation?.city || ''}</p>
+                            <p><strong>Адреса:</strong> {elLocation?.address || ''}</p>
+                            <p><strong>Телефон:</strong> {elLocation?.phone || ''}</p>
+                            <p><strong>Години роботи:</strong> {elLocation?.openingTime} - {elLocation?.closingTime}</p>
+                        </div>
+                    </div>
 
+                    {/* Кнопка забронювати окремо під колонками */}
+                    <button className={css.bookButton}>
+                        Забронювати
+                    </button>
                 </div>
-
             </div>
         </main>
     );

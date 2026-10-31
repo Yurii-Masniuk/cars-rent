@@ -1,15 +1,15 @@
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 2rem 1rem;
     display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .backBtn {
     display: inline-block;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     color: #0284c7;
     font-weight: 500;
     text-decoration: none;
@@ -59,7 +59,12 @@
     padding: 2rem;
 }
 
-.content h3 {
+.headerCenter {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.headerCenter h3 {
     font-size: 1.75rem;
     font-weight: 700;
     color: #1e293b;
@@ -69,25 +74,55 @@
 .price {
     font-size: 1.25rem;
     color: #0284c7;
-    margin-bottom: 1.5rem;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
-.specs {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.5rem 0;
+.contentColumns {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    margin-bottom: 2rem;
+}
+
+.columnCard {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    font-size: 1rem;
-    color: #475569;
-    border-top: 1px solid #f1f5f9;
-    padding-top: 1.5rem;
+    gap: 14px;
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background-color: #ffffff;
 }
 
-.specs li span {
+.columnCard h4 {
+    margin: 0 0 4px 0;
+    font-size: 1.125rem;
+    color: #1e293b;
+}
+
+.specsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    font-size: 14px;
+    color: #475569;
+}
+
+.specsList li span {
     font-weight: 600;
     color: #1e293b;
+}
+
+.columnCard p {
+    margin: 0;
+    font-size: 14px;
+    color: #334155;
+    line-height: 1.5;
 }
 
 .statusActive {
@@ -105,20 +140,9 @@
     font-weight: 600 !important;
 }
 
-.detailsBtn {
-    display: inline-block;
-    margin-top: 1rem;
-    background-color: #0284c7;
-    color: white;
-    padding: 0.75rem 1.25rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    text-decoration: none;
-    text-align: center;
-    transition: background-color 0.2s;
-    width: fit-content;
-}
-
-.detailsBtn:hover {
-    background-color: #0369a1;
+.actionsWrapper {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 0.5rem;
 }

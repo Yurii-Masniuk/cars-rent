@@ -48,32 +48,34 @@ const Page = async ({ params }: PageProps) => {
                     <h3>{element.brand} {element.model}</h3>
                     <p className={css.price}><b>{element.pricePerDay} $</b> / день</p>
 
-                    <ul className={css.specs}>
-                        <li>
-                            <span>Статус авто:</span>{' '}
-                            <span className={
-                                element.status === 'active'
-                                    ? css.statusActive
-                                    : element.status === 'maintenance'
-                                        ? css.statusMaintenance
-                                        : css.statusInactive
-                            }>
-                                {element.status === 'active' && 'Активний'}
-                                {element.status === 'maintenance' && 'На обслуговуванні'}
-                                {element.status === 'inactive' && 'Неактивний'}
-                            </span>
-                        </li>
-                        <li><span>Рік:</span> {element.year}</li>
-                        <li><span>Категорія:</span> {element.category}</li>
-                        <li><span>Коробка передач:</span> {element.transmission}</li>
-                        <li><span>Тип пального:</span> {element.fuelType}</li>
-                        <li><span>Кількість місць:</span> {element.seats}</li>
-                        <li><span>Колір:</span> {element.color}</li>
-                        <li><span>Пробіг:</span> {element.mileage}</li>
-                        <li><span>Місце знаходження:</span>{elLocation.city}</li>  
-                    </ul>
+                    <div className={css.specsColumn}>
+                        <ul className={css.specsList}>
+                            <li><span>Місце знаходження:</span>{elLocation.city}</li>
+                            <li>
+                                <span>Статус авто:</span>{' '}
+                                <span className={
+                                    element.status === 'active'
+                                        ? css.statusActive
+                                        : element.status === 'maintenance'
+                                            ? css.statusMaintenance
+                                            : css.statusInactive
+                                }>
+                                    {element.status === 'active' && 'Активний'}
+                                    {element.status === 'maintenance' && 'На обслуговуванні'}
+                                    {element.status === 'inactive' && 'Неактивний'}
+                                </span>
+                            </li>
+                            <li><span>Рік:</span> {element.year}</li>
+                            <li><span>Категорія:</span> {element.category}</li>
+                            <li><span>Коробка передач:</span> {element.transmission}</li>
+                            <li><span>Тип пального:</span> {element.fuelType}</li>
+                            <li><span>Кількість місць:</span> {element.seats}</li>
+                            <li><span>Колір:</span> {element.color}</li>
+                            <li><span>Пробіг:</span> {element.mileage}</li>
+                        </ul>
+                    </div>                    
 
-                   <BtnEditCars element={element}/>
+                    <BtnEditCars element={element} />
 
                 </div>
 
