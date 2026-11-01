@@ -1,7 +1,7 @@
 import { Booking, CreateBookingBody, GetBookingResponse, GetBookingsParams, UpdateBookingStatusBody } from "@/types/bookings";
 import { proxyServer } from "./server-config";
 
-export const getBookings = async (params: GetBookingsParams) => {
+export const getBookings = async (params?: GetBookingsParams) => {
     const res = await proxyServer.get<GetBookingResponse>('/bookings', {params});
     return res.data;
 };

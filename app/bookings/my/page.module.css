@@ -1,0 +1,33 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.backBtn {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #0284c7;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.backBtn:hover {
+    color: #0369a1;
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    text-align: center;
+}

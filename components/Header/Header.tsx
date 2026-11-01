@@ -36,7 +36,7 @@ const Header = () => {
     return (
         <header className={css.header}>
             <nav className={css.nav}>
-                <Link href="/" className={css.link}>Головна</Link>                
+                <Link href="/" className={css.link}>Головна</Link>
                 <div className={css.authSection}>
                     {user ? (
                         <div className={css.userPanel}>
@@ -49,6 +49,9 @@ const Header = () => {
                         <div className={css.authLinks}>
                             <Link href="/login" className={css.link}>Увійти</Link>
                             <Link href="/register" className={css.link}>Реєстрація</Link>
+                            <Link href="/bookings/my" className={css.link}>
+                                Мої бронювання
+                            </Link>
                         </div>
                     )}
                 </div>

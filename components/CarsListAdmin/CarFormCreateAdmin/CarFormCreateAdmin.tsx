@@ -1,7 +1,6 @@
 'use client';
 
 import { GetLocationsResponse, Location as LocationType } from '@/types/locations';
-
 import { CreateCarBody } from '@/types/cars';
 import css from './CarFormCreateAdmin.module.css';
 import { useRouter } from 'next/navigation';

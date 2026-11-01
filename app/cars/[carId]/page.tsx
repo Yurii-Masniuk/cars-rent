@@ -1,3 +1,4 @@
+import CarBookingActions from '@/components/CarBookingActions/CarBookingActions';
 import css from './page.module.css';
 import { getCarById } from '@/services/cars';
 import { getLocationById } from '@/services/locations';
@@ -86,15 +87,11 @@ const Page = async ({ params }: PageProps) => {
                         </div>
                     </div>
 
-                    {element.status === 'active' ? (
-                        <Link href={`/admin/bookings`} className={css.bookLink}>
-                            Забронювати
-                        </Link>
-                    ) : (
-                        <button className={css.bookButton} disabled>
-                            Забронювати
-                        </button>
-                    )}
+                    <CarBookingActions 
+                        carId={element._id} 
+                        pricePerDay={element.pricePerDay} 
+                        status={element.status} 
+                    />
                 </div>
             </div>
         </main>
