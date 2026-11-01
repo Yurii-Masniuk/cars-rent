@@ -2,14 +2,14 @@
 
 import { useQuery } from '@tanstack/react-query';
 import css from './BookingsList.module.css';
-import { getBookings } from '@/services/bookings';
+import { getMyBookings } from '@/services/bookings';
 import { AxiosError } from 'axios';
 import BookingItem from './BookingItem/BookingItem';
 
 const BookingsList = () => {
     const queryBookings = useQuery({
         queryKey: ['booking'],
-        queryFn: () => getBookings(),
+        queryFn: () => getMyBookings(),
     });
 
     const bookings = queryBookings.data?.bookings;
