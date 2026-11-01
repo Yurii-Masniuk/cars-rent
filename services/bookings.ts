@@ -23,7 +23,7 @@ export const getBookingById = async (id: string) => {
 
 export const cancelBookingById = async (id: string) => {
     const res = await proxyServer.patch<Booking>(`/bookings/${id}/cancel`);
-    return res.data;
+    return res.data || id;
 };
 
 export const updateStatusBooking = async (id: string, body: UpdateBookingStatusBody) => {

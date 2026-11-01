@@ -44,15 +44,14 @@ const BookingsList = () => {
           
             {isLoading && <p className={css.loading}>Завантаження...</p>}
             {errMessage && <p className={css.error}>{errMessage}</p>}
-            {bookings && <ul className={css.bookingsList}>
-                {bookings?.map((el) => (
-                    <div key={el._id}>
-                        <BookingItem element={el} />
-                        <button>Редагувати</button>
-                    </div>
-                ))}
-            </ul>
-            }
+            
+            {bookings && (
+                <ul className={css.bookingsList}>
+                    {bookings?.map((el) => (
+                        <BookingItem key={el._id} element={el} />
+                    ))}
+                </ul>
+            )}
 
             {!isLoading && !error && !bookings && <p className={css.noCars}>Бронювань не знайдено</p>}
 

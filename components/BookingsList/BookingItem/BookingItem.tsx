@@ -1,12 +1,20 @@
+'use client';
+
 import { Booking, BookingStatus } from '@/types/bookings';
 import css from './BookingItem.module.css';
-import Link from 'next/link';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { cancelBookingById } from '@/services/bookings';
+import { useState } from 'react';
+import BookingFormEdit from '../BookingFormEdit/BookingFormEdit';
 
 interface BookingItemProps{
     element: Booking,
 };
 
 const BookingItem = ({ element }: BookingItemProps) => {
+
+    const queryClient = useQueryClient();
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     
     const getStatusLabel = (status: BookingStatus) => {
         switch (status) {
@@ -18,30 +26,74 @@ const BookingItem = ({ element }: BookingItemProps) => {
             default: return status;
         };
     };
+
+    const cancelMutation = useMutation({
+        mutationFn: (id: string) => cancelBookingById(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['bookings'] });
+        },
+    });
+
+    const handleCancel = () => {
+        if (confirm('Ви впевнені, що хочете скасувати це бронювання?')) {
+            cancelMutation.mutate(element._id);
+        }
+    };
     
     return (
-        <li className={css.bookingItem}>
+        <>
 
-            <div className={css.content}>
-                <h3>Бронювання № {element._id.slice(-6)}</h3>
+            <li className={css.bookingItem}>
+                <div className={css.content}>
+                    <h3>Бронювання № {element._id.slice(-6)}</h3>
 
-                <ul className={css.specs}>
-                    <li>
-                        <span>Статус:</span>{' '}
-                        <span className={css.elementStatus}>
-                            {getStatusLabel(element.status)}
-                        </span>
-                    </li>
-                    <li><span>Дата початку:</span> {new Date(element.startDate).toLocaleDateString()}</li>
-                    <li><span>Дата закінчення:</span> {new Date(element.endDate).toLocaleDateString()}</li>
-                    <li><span>Загальна вартість:</span> {element.totalPrice} $</li>
-                </ul>
+                    <ul className={css.specs}>
+                        <li>
+                            <span>Статус:</span>{' '}
+                            <span className={`${css.elementStatus} ${css[element.status]}`}>
+                                {getStatusLabel(element.status)}
+                            </span>
+                        </li>
+                        <li><span>Дата початку:</span> {new Date(element.startDate).toLocaleDateString()}</li>
+                        <li><span>Дата закінчення:</span> {new Date(element.endDate).toLocaleDateString()}</li>
+                
+                        {element.cancelledAt && (
+                            <li><span>Дата скасування:</span> {new Date(element.cancelledAt).toLocaleDateString()}</li>
+                        )}
 
-                <Link href={`/bookings/my/${element._id}`} className={css.detailsBtn}>
-                    Деталі бронювання
-                </Link>
-            </div>
-        </li>
+                        <li><span>Загальна вартість:</span> {element.totalPrice} $</li>
+                    </ul>
+
+                    <div className={css.actions}>
+                        <button
+                            onClick={() => setIsEditModalOpen(true)}
+                            className={css.editBtn}
+                            disabled={element.status === 'cancelled'}
+                        >
+                            Редагувати
+                        </button>
+
+                        <button
+                            onClick={handleCancel}
+                            disabled={cancelMutation.isPending || element.status === 'cancelled'}
+                            className={css.cancelBtn}
+                        >
+                            {cancelMutation.isPending ? 'Скасування...' : 'Скасувати'}
+                        </button>
+                    </div>
+                </div>
+            </li>
+            
+            {isEditModalOpen && (
+                <BookingFormEdit
+                    bookingId={element._id}
+                    status={element.status}
+                    onClose={() => setIsEditModalOpen(false)}
+                />
+            )}
+
+        </>
+        
     );
 };
 

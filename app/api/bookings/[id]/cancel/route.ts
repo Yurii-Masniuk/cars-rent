@@ -10,9 +10,8 @@ interface IdParams {
 export const PATCH = async (req: NextRequest, { params }: IdParams) => {
     try {
         const cookieStore = await cookies();
-        const body = await req.json();
         const { id } = await params;
-        const res = await globalServer.patch(`/bookings/${id}/cancel`, body, {
+        const res = await globalServer.patch(`/bookings/${id}/cancel`, {}, {
             headers: {
                 Cookie: cookieStore.toString(),
             },

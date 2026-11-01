@@ -1,11 +1,11 @@
 .bookingsList {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1.0rem;
     list-style: none;
     padding: 0;
     margin: 0;
-    justify-content: flex-start;
+    align-items: stretch;
 }
 
 .noBookings {
