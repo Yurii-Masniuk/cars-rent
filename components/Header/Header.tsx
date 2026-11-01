@@ -41,6 +41,9 @@ const Header = () => {
                     {user ? (
                         <div className={css.userPanel}>
                             <span className={css.greeting}>Вітаємо, <b>{user.name}</b>!</span>
+                            <Link href="/bookings/my" className={css.link}>
+                                Мої бронювання
+                            </Link>
                             <button onClick={handleLogout} className={css.logoutBtn} disabled={isLoading}>
                                 {isLoading ? 'Вихід...' : 'Вийти'}
                             </button>
@@ -49,9 +52,6 @@ const Header = () => {
                         <div className={css.authLinks}>
                             <Link href="/login" className={css.link}>Увійти</Link>
                             <Link href="/register" className={css.link}>Реєстрація</Link>
-                            <Link href="/bookings/my" className={css.link}>
-                                Мої бронювання
-                            </Link>
                         </div>
                     )}
                 </div>
