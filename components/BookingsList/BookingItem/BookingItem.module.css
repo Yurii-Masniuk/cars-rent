@@ -24,6 +24,20 @@
     height: 100%;
 }
 
+.carIdBook {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0284c7;
+    margin: 0 0 0.5rem 0;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.carIdBook:hover {
+    color: #0369a1;
+    text-decoration: underline;
+}
+
 .content h3 {
     font-size: 1.125rem;
     font-weight: 600;

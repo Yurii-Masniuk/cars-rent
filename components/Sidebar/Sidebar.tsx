@@ -35,6 +35,7 @@ const SideBar = () => {
 
     const navLinks = [
         { href: '/admin/dashboard', label: 'Dashboard' },
+        { href: '/admin/bookings', label: 'Бронювання' },
         { href: '/admin/cars', label: 'Автомобілі' },
         { href: '/admin/locations', label: 'Локації' },
         { href: '/admin/users', label: 'Користувачі' },

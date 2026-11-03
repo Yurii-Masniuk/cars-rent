@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import css from './LocationsList.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { getLocations } from '@/services/locations';
@@ -20,7 +20,13 @@ const LocationsList = () => {
         const hasPreviousPage = queryCars.data?.hasPreviousPage;
         const hasNextPage = queryCars.data?.hasNextPage;
         const isLoading = queryCars.isLoading;
-        const error = queryCars.error;
+    const error = queryCars.error;
+    const memoKey = JSON.stringify(locations);
+    
+    const sortedLocations = useMemo(() => { 
+        const copy = locations?.toSorted((a, b) => a.city.localeCompare(b.city))
+        return copy;
+    }, [memoKey],);
     
         const getErrorMessage = () => {
             if (!error) return null;
@@ -50,9 +56,9 @@ const LocationsList = () => {
             {isLoading && <p className={css.loading}>Завантаження...</p>}
             {errMessage && <p className={css.error}>{errMessage}</p>}
 
-            {locations && (
+            {sortedLocations && (
                 <ul className={css.locationsList}>
-                    {locations.map((el) => (
+                    {sortedLocations.map((el) => (
                         <li key={el._id} className={css.listItem}>
                             <LocationItem element={el} />
                         </li>

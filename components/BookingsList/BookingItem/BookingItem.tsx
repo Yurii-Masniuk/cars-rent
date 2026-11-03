@@ -2,10 +2,12 @@
 
 import { Booking, BookingStatus } from '@/types/bookings';
 import css from './BookingItem.module.css';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { cancelBookingById } from '@/services/bookings';
 import { useState } from 'react';
 import BookingFormEdit from '../BookingFormEdit/BookingFormEdit';
+import { getCarById } from '@/services/cars';
+import Link from 'next/link';
 
 interface BookingItemProps{
     element: Booking,
@@ -27,6 +29,13 @@ const BookingItem = ({ element }: BookingItemProps) => {
         };
     };
 
+    const queryCar = useQuery({
+        queryKey: ['carId', element.carId],
+        queryFn: () => getCarById(element.carId),
+    });
+
+    const carDetails = queryCar.data?.model;
+
     const cancelMutation = useMutation({
         mutationFn: (id: string) => cancelBookingById(id),
         onSuccess: () => {
@@ -42,13 +51,17 @@ const BookingItem = ({ element }: BookingItemProps) => {
     
     return (
         <>
-
             <li className={css.bookingItem}>
                 <div className={css.content}>
                     <h3>Бронювання № {element._id.slice(-6)}</h3>
 
                     <ul className={css.specs}>
-                        <li>
+                        <li>                            
+                            <h4  className={css.carIdBook}>
+                                <Link href={`/cars/${element.carId}`}>
+                                    Автомобіль: {carDetails}
+                                    </Link>
+                            </h4>
                             <span>Статус:</span>{' '}
                             <span className={`${css.elementStatus} ${css[element.status]}`}>
                                 {getStatusLabel(element.status)}

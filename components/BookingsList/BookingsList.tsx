@@ -8,7 +8,7 @@ import BookingItem from './BookingItem/BookingItem';
 
 const BookingsList = () => {
     const queryBookings = useQuery({
-        queryKey: ['booking'],
+        queryKey: ['myBookings'],
         queryFn: () => getMyBookings(),
     });
 
