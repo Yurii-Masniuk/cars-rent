@@ -11,45 +11,45 @@ const LocationsList = () => {
 
     const [page, setPage] = useState<number>(1);
         
-        const queryCars = useQuery({
-            queryKey: ['locations', page],
-            queryFn: () => getLocations(page),
-        });
+    const queryCars = useQuery({
+        queryKey: ['locations', page],
+        queryFn: () => getLocations(page),
+    });
     
-        const locations = queryCars.data?.locations;
-        const hasPreviousPage = queryCars.data?.hasPreviousPage;
-        const hasNextPage = queryCars.data?.hasNextPage;
-        const isLoading = queryCars.isLoading;
+    const locations = queryCars.data?.locations;
+    const hasPreviousPage = queryCars.data?.hasPreviousPage;
+    const hasNextPage = queryCars.data?.hasNextPage;
+    const isLoading = queryCars.isLoading;
     const error = queryCars.error;
     const memoKey = JSON.stringify(locations);
     
-    const sortedLocations = useMemo(() => { 
-        const copy = locations?.toSorted((a, b) => a.city.localeCompare(b.city))
+    const sortedLocations = useMemo(() => {
+        const copy = locations?.toSorted((a, b) => a.city.localeCompare(b.city));
         return copy;
     }, [memoKey],);
     
-        const getErrorMessage = () => {
-            if (!error) return null;
-            const err = error as AxiosError<{ message: string }>;
-            const status = err.response?.status;
+    const getErrorMessage = () => {
+        if (!error) return null;
+        const err = error as AxiosError<{ message: string }>;
+        const status = err.response?.status;
     
-            switch (status) {
-                case 400:
-                    return "Некоректний запит. Перевірте параметри.";
-                case 401:
-                    return "Будь ласка, увійдіть у систему.";
-                case 404:
-                    return "Локації не знайдено.";
-                default:
-                    if (status && status >= 500) {
-                        return "Помилка на сервері. Спробуйте пізніше.";
-                    } else {
-                        return err.response?.data?.message || err.message || "Не вдалося завантажити список локацій.";
-                    };
-            };
+        switch (status) {
+            case 400:
+                return "Некоректний запит. Перевірте параметри.";
+            case 401:
+                return "Будь ласка, увійдіть у систему.";
+            case 404:
+                return "Локації не знайдено.";
+            default:
+                if (status && status >= 500) {
+                    return "Помилка на сервері. Спробуйте пізніше.";
+                } else {
+                    return err.response?.data?.message || err.message || "Не вдалося завантажити список локацій.";
+                };
         };
+    };
     
-        const errMessage = getErrorMessage();
+    const errMessage = getErrorMessage();
 
     return (
         <div className={css.wrapper}>

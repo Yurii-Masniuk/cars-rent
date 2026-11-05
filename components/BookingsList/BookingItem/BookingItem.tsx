@@ -29,12 +29,12 @@ const BookingItem = ({ element }: BookingItemProps) => {
         };
     };
 
-    const queryCar = useQuery({
+    const queryCars = useQuery({
         queryKey: ['carId', element.carId],
         queryFn: () => getCarById(element.carId),
     });
 
-    const carDetails = queryCar.data?.model;
+    const carDetails = queryCars.data?.model;
 
     const cancelMutation = useMutation({
         mutationFn: (id: string) => cancelBookingById(id),
