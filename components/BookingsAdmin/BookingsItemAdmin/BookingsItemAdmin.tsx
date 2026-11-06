@@ -3,7 +3,7 @@
 import { Booking, BookingStatus } from '@/types/bookings';
 import css from './BookingsItemAdmin.module.css';
 import Link from 'next/link';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getCarById } from '@/services/cars';
 import { useState } from 'react';
 import BookingFormEditAdmin from '../BookingFormEditAdmin/BookingFormEditAdmin';
@@ -11,8 +11,6 @@ import BookingFormEditAdmin from '../BookingFormEditAdmin/BookingFormEditAdmin';
 interface BookingsItemAdminProps{
     element: Booking,
 };
-
-
 
 const BookingsItemAdmin = ({ element }: BookingsItemAdminProps) => {
     
@@ -65,7 +63,6 @@ const BookingsItemAdmin = ({ element }: BookingsItemAdminProps) => {
                     </ul>
 
                     <div className={css.actions}>
-                        {/* Для адміна: кнопка Редагувати ніколи не блокується, кнопки Скасувати немає */}
                         <button
                             onClick={() => setIsEditModalOpen(true)}
                             className={css.editBtn}

@@ -1,6 +1,6 @@
 'use client';
 
-import { BookingStatus, UpdateBookingStatusBody } from '@/types/bookings';
+import { BookingStatus } from '@/types/bookings';
 import css from './BookingFormEditAdmin.module.css';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';

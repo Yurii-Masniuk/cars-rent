@@ -30,7 +30,7 @@ const BookingFormEdit = ({
 
     const [startDate, setStartDate] = useState(initialStartDate ? initialStartDate.split('T')[0] : '');
     const [endDate, setEndDate] = useState(initialEndDate ? initialEndDate.split('T')[0] : '');
-    const [bookingStatus, setBookingStatus] = useState<BookingStatus>(status);
+    const [bookingStatus] = useState<BookingStatus>(status);
 
     const calculateTotalPrice = () => {
         if (!startDate || !endDate) return 0;
