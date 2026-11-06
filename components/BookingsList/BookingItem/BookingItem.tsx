@@ -48,6 +48,8 @@ const BookingItem = ({ element }: BookingItemProps) => {
             cancelMutation.mutate(element._id);
         }
     };
+
+    const isCancelled = element.status === 'cancelled';
     
     return (
         <>
@@ -56,11 +58,11 @@ const BookingItem = ({ element }: BookingItemProps) => {
                     <h3>Бронювання № {element._id.slice(-6)}</h3>
 
                     <ul className={css.specs}>
-                        <li>                            
-                            <h4  className={css.carIdBook}>
+                        <li>
+                            <h4 className={css.carIdBook}>
                                 <Link href={`/cars/${element.carId}`}>
                                     Автомобіль: {carDetails}
-                                    </Link>
+                                </Link>
                             </h4>
                             <span>Статус:</span>{' '}
                             <span className={`${css.elementStatus} ${css[element.status]}`}>
@@ -81,18 +83,20 @@ const BookingItem = ({ element }: BookingItemProps) => {
                         <button
                             onClick={() => setIsEditModalOpen(true)}
                             className={css.editBtn}
-                            disabled={element.status === 'cancelled'}
+                            disabled={isCancelled}
                         >
                             Редагувати
                         </button>
 
-                        <button
-                            onClick={handleCancel}
-                            disabled={cancelMutation.isPending || element.status === 'cancelled'}
-                            className={css.cancelBtn}
-                        >
-                            {cancelMutation.isPending ? 'Скасування...' : 'Скасувати'}
-                        </button>
+                        {!isCancelled && (
+                            <button
+                                onClick={handleCancel}
+                                disabled={cancelMutation.isPending}
+                                className={css.cancelBtn}
+                            >
+                                {cancelMutation.isPending ? 'Скасування...' : 'Скасувати'}
+                            </button>
+                        )}
                     </div>
                 </div>
             </li>
@@ -101,6 +105,9 @@ const BookingItem = ({ element }: BookingItemProps) => {
                 <BookingFormEdit
                     bookingId={element._id}
                     status={element.status}
+                    startDate={element.startDate}
+                    endDate={element.endDate}
+                    pricePerDay={queryCars.data?.pricePerDay ?? 0}
                     onClose={() => setIsEditModalOpen(false)}
                 />
             )}

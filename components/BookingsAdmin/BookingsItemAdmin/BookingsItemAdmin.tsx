@@ -3,11 +3,10 @@
 import { Booking, BookingStatus } from '@/types/bookings';
 import css from './BookingsItemAdmin.module.css';
 import Link from 'next/link';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getCarById } from '@/services/cars';
 import { useState } from 'react';
-import { cancelBookingById } from '@/services/bookings';
-import BookingFormEdit from '@/components/BookingsList/BookingFormEdit/BookingFormEdit';
+import BookingFormEditAdmin from '../BookingFormEditAdmin/BookingFormEditAdmin';
 
 interface BookingsItemAdminProps{
     element: Booking,
@@ -17,7 +16,6 @@ interface BookingsItemAdminProps{
 
 const BookingsItemAdmin = ({ element }: BookingsItemAdminProps) => {
     
-    const queryClient = useQueryClient();
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     
     const getStatusLabel = (status: BookingStatus) => {
@@ -35,23 +33,8 @@ const BookingsItemAdmin = ({ element }: BookingsItemAdminProps) => {
         queryKey: ['carId', element.carId],
         queryFn: () => getCarById(element.carId),
     });
-    
 
     const carDetails = queryCar.data?.model;
-
-    const cancelMutation = useMutation({
-        mutationFn: (id: string) => cancelBookingById(id),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['bookings'] });
-        },
-    });
-
-    const handleCancel = () => {
-        if (confirm('Ви впевнені, що хочете скасувати це бронювання?')) {
-            cancelMutation.mutate(element._id);
-        }
-    };
-
 
     return (
         <>
@@ -61,11 +44,10 @@ const BookingsItemAdmin = ({ element }: BookingsItemAdminProps) => {
 
                     <ul className={css.specs}>
                         <li>
-                            
-                            <h4  className={css.carIdBook}>
+                            <h4 className={css.carIdBook}>
                                 <Link href={`/cars/${element.carId}`}>
                                     Автомобіль: {carDetails}
-                                    </Link>
+                                </Link>
                             </h4>
                             <span>Статус:</span>{' '}
                             <span className={`${css.elementStatus} ${css[element.status]}`}>
@@ -83,35 +65,27 @@ const BookingsItemAdmin = ({ element }: BookingsItemAdminProps) => {
                     </ul>
 
                     <div className={css.actions}>
+                        {/* Для адміна: кнопка Редагувати ніколи не блокується, кнопки Скасувати немає */}
                         <button
                             onClick={() => setIsEditModalOpen(true)}
                             className={css.editBtn}
-                            disabled={element.status === 'cancelled'}
                         >
                             Редагувати
                         </button>
-
-                        <button
-                            onClick={handleCancel}
-                            disabled={cancelMutation.isPending || element.status === 'cancelled'}
-                            className={css.cancelBtn}
-                        >
-                            {cancelMutation.isPending ? 'Скасування...' : 'Скасувати'}
-                        </button>
-                  
-                  
                     </div>
                 </div>
             </li>
       
             {isEditModalOpen && (
-                <BookingFormEdit
+                <BookingFormEditAdmin
                     bookingId={element._id}
                     status={element.status}
+                    startDate={element.startDate}
+                    endDate={element.endDate}
+                    pricePerDay={queryCar.data?.pricePerDay ?? 0}
                     onClose={() => setIsEditModalOpen(false)}
                 />
-            )
-            }
+            )}
         </>
     );
 };
