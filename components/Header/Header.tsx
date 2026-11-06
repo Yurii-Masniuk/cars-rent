@@ -7,10 +7,13 @@ import { useAuthStore } from '@/stores/auth';
 import { logout } from '@/services/auth';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
+import { useIsAdmin } from '@/hooks/useIsAdmin';
 
 const Header = () => {
+
     const router = useRouter();
     const user = useAuthStore((s) => s.user);
+    const isAdmin = useIsAdmin();
     const clearUser = useAuthStore((s) => s.clearUser);
 
     const [errMessage, setErrMessage] = useState<string | null>(null);
@@ -41,9 +44,12 @@ const Header = () => {
                     {user ? (
                         <div className={css.userPanel}>
                             <span className={css.greeting}>Вітаємо, <b>{user.name}</b>!</span>
-                            <Link href="/bookings/my" className={css.link}>
-                                Мої бронювання
-                            </Link>
+                            {!isAdmin &&
+                                <Link href="/bookings/my" className={css.link}>
+                                    Мої бронювання
+                                </Link>
+                            }
+
                             <button onClick={handleLogout} className={css.logoutBtn} disabled={isLoading}>
                                 {isLoading ? 'Вихід...' : 'Вийти'}
                             </button>
