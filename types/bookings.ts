@@ -32,5 +32,7 @@ export interface CreateBookingBody {
 };
 
 export interface UpdateBookingStatusBody {
-    status: BookingStatus;
+    status?: BookingStatus;
+    startDate?: string;
+    endDate?: string;
 };

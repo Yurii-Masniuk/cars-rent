@@ -47,9 +47,9 @@ const BookingFormEdit = ({
         mutationFn: (body: { startDate: string; endDate: string; status: BookingStatus }) => 
             updateStatusBooking(bookingId, body),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['bookingsAdmin'] });
+            queryClient.invalidateQueries({ queryKey: ['bookingsMy'] });
             onClose();
-            router.push('/admin/bookings');
+            router.push('/bookings/my');
         },
     });
 
