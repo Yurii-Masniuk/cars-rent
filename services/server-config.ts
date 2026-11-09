@@ -1,7 +1,8 @@
+import { siteUrl } from "@/helpers/constans";
 import axios from "axios";
 
 export const proxyServer = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: `${siteUrl}/api`, 
     withCredentials: true,
 });
 
