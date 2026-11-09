@@ -1,5 +1,11 @@
 import BookingsAdmin from '@/components/BookingsAdmin/BookingsAdmin';
 import css from './page.module.css';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'Admin bookings page',
+};
 
 const Page = () => {
     return (

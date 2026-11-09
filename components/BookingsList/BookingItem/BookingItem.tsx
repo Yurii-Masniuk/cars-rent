@@ -39,7 +39,7 @@ const BookingItem = ({ element }: BookingItemProps) => {
     const cancelMutation = useMutation({
         mutationFn: (id: string) => cancelBookingById(id),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['bookings'] });
+            queryClient.invalidateQueries({ queryKey: ['myBookings'] });
         },
     });
 

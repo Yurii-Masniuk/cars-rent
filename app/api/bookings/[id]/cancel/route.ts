@@ -11,7 +11,7 @@ export const PATCH = async (req: NextRequest, { params }: IdParams) => {
     try {
         const cookieStore = await cookies();
         const { id } = await params;
-        const res = await globalServer.patch(`/bookings/${id}/cancel`, {}, {
+        const res = await globalServer.patch(`/bookings/${id}/cancel`, null, {
             headers: {
                 Cookie: cookieStore.toString(),
             },
