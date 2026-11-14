@@ -3,6 +3,12 @@ import css from './page.module.css';
 import DashboardFleetStats from '@/components/DashboardFleetStats/DashboardFleetStats';
 import DashboardQuickActions from '@/components/DashboardQuickActions/DashboardQuickActions';
 import DashboardRevenueChart from '@/components/DashboardRevenueChart/DashboardRevenueChart';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'Admin dashboard page',
+};
 
 const Page = async () => {
   

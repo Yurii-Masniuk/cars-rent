@@ -1,5 +1,11 @@
+import { Metadata } from 'next';
 import css from './page.module.css';
 import CarsListAdmin from '@/components/CarsListAdmin/CarsListAdmin';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'Admin cars page',
+};
 
 const Page = () => {
   

@@ -4,6 +4,12 @@ import { globalServer } from '@/services/server-config';
 import Link from 'next/link';
 import { Car } from '@/types/cars';
 import CarFormEditAdmin from '@/components/CarsListAdmin/CarFormEditAdmin/CarFormEditAdmin';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'Admin car edit page',
+};
 
 interface PageProps{
     params: Promise<{ carId: string }>,

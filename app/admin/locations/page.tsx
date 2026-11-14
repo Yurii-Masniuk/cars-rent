@@ -1,5 +1,11 @@
 import LocationsList from '@/components/LocationsList/LocationsList';
 import css from './page.module.css';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'Admin locations page',
+};
 
 const Page = () => {
   return (

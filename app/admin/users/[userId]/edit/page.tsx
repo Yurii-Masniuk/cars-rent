@@ -4,6 +4,12 @@ import { globalServer } from '@/services/server-config';
 import { User } from '@/types/users';
 import UserFormEdit from '@/components/UserList/UserFormEdit/UserFormEdit';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'Admin edit user page',
+};
 
 interface PageProps{
     params: Promise<{ userId: string }>,

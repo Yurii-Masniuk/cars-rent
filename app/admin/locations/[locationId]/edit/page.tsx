@@ -4,6 +4,12 @@ import { globalServer } from '@/services/server-config';
 import Link from 'next/link';
 import { Location } from '@/types/locations';
 import LocationFormEdit from '@/components/LocationsList/LocationFormEdit/LocationFormEdit';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'Admin edit location page',
+};
 
 interface PageProps{
     params: Promise<{ locationId: string }>,

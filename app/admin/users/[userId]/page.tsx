@@ -3,6 +3,12 @@ import Link from 'next/link';
 import { cookies } from 'next/headers';
 import { globalServer } from '@/services/server-config';
 import { User } from '@/types/users';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'Admin user ID page',
+};
 
 interface PageProps{
     params: Promise<{userId: string}>,
