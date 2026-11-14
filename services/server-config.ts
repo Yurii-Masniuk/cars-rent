@@ -1,4 +1,4 @@
-import { siteUrl } from "@/helpers/constans";
+import { siteUrl } from "@/helpers/constants";
 import axios from "axios";
 
 export const proxyServer = axios.create({
