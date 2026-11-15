@@ -49,7 +49,9 @@ const BookingItem = ({ element }: BookingItemProps) => {
         }
     };
 
-    const isCancelled = element.status === 'cancelled';
+    const isEditable = element.status === 'pending' || element.status === 'confirmed';
+
+    const canCancel = element.status === 'pending' || element.status === 'confirmed';
     
     return (
         <>
@@ -83,12 +85,12 @@ const BookingItem = ({ element }: BookingItemProps) => {
                         <button
                             onClick={() => setIsEditModalOpen(true)}
                             className={css.editBtn}
-                            disabled={isCancelled}
+                            disabled={!isEditable}
                         >
                             Редагувати
                         </button>
 
-                        {!isCancelled && (
+                        {canCancel && (
                             <button
                                 onClick={handleCancel}
                                 disabled={cancelMutation.isPending}
