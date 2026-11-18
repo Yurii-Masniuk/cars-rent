@@ -1,3 +1,5 @@
+🇺🇦 [Українська версія цього документу](./README_UA.md)
+
 🚗 Car Rent App
 
 A modern car rental web application featuring user-centric scenarios and an advanced administrator panel. The project is implemented using modern frontend technologies.
