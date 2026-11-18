@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import css from './page.module.css';
 import BookingsList from '@/components/BookingsList/BookingsList';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'User bookings page',
+};
 
 const Page = () => {
     return (

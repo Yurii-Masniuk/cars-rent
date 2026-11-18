@@ -4,6 +4,12 @@ import { getCarById } from '@/services/cars';
 import { getLocationById } from '@/services/locations';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Cars-rent',
+    description: 'User car ID page',
+};
 
 interface PageProps {
     params: Promise<{ carId: string }>;
